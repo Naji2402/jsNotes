@@ -1,0 +1,105 @@
+FIXME: SECTIONS
+TODO: MAIN TOPICS
+
+SECTION 11 FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
+
+TODO:. The slice method returns a copy of an array into a new array.
+        The original array will not be modified.
+     . eg( const animals = ['ant', 'bison', 'camel', 'duck', 'elephant']
+            console.log(animals.slice(2, 5)) // ['camel', 'duck']
+            console.log(animals) // ['ant', 'bison', 'camel', 'duck', 'elephant']
+        )
+
+TODO:. The splice method is used to change the contents of an array by removing or replacing existing elements .
+        it directly modifies the original array and returns an array conaining the deleted elements.
+     . splice(1, 2) in this 1 is the starting index and 2 is how many elements should be removed from the starting index.
+     . eg( let fruits = ['apple', 'banana', 'cherry', 'date']
+           let removed = fruits.splice(1, 2) //Fruits is now ['apple', 'date']
+           // removedFruits is ['banana', 'cherry']
+     )
+
+TODO:. insertAdjacentHTML method is used to add html elemets via javascript.
+        It is similar to innerHTML.
+        insertAdjacentHTML takes two parameters.
+            *first parameter is where to add there are four types(afterbegin,beforebegin, beforeend, afterend).
+            *second parameter is what html we need to insert into the element.
+        eg( body.insertAdjacentHTML('afterbegin', html) ), 
+            where afterbegin is where to add the element and the html is the html code we want to insert into to body element.
+
+TODO:. find method is an array method used to loop through the array and returns the first value that satisfies a specific condition.
+         if no elements matches the condition it returns undefined.
+       .eg ( arra.find((element) => {
+            return element.name === 'Messi';
+        }));
+         returns the first element that has the name property equal to Messi.
+
+TODO:. findIndex method in an array is used to loop through an array and returns the index of the first element that satisfies a specific condition.
+        if no element mathches the condition it returns undefined.
+     . eg( arr.findIndex((element) => {
+        return element.name === 'Messi';
+     }));
+        returns the first element that has  the name property equal to Messi.
+
+SECTION 10 FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
+
+TODO: .Js Does not have passing by reference. 
+    The reference that we pass pass is a value.
+    It is a value that contains a memmory address. 
+    Basically we pass a referece to the funcion but we do not pass by a referece.
+
+
+TODO:. Js has first class funcion it enable us to write Higher order functions.
+
+    *first class functions
+        .Treats functions as first class citizens
+        .This means that function are simply treated as values
+        .Function are just another type of object in js.
+        .functions are values too
+        .can pass functions as arguments to other functions.
+        .eg (bind())
+    
+    *Higher order functions
+        .A function that receives another function as an argument, that returns a new function, or both
+        .this is only possible because of first class function.
+        .eg (addEventListener())
+
+TODO:. Advantages of callBack function
+
+        .allow us to split up to code to reusable codes.
+        .(imp) callBack functions allow us to create abstraction.
+    
+
+TODO:. The this keyword depends on how the function is called.
+        .if the function is called by the object (eg jonas.book()),
+            the this keyword points to the jonas object.
+        .if the function is called not by the object (eg: the book method is stored outside in a varible),
+            the this keyword points to undefined.
+
+        *How to tell js what the this keyword should look like. using 
+            *call():
+                    .call(<this keyword>, <rest of the parameters>)
+                    .we call the call method first and then the call method calls the funcion
+                          with the this keyword set to the first argument we pass in the call method.
+                    .eg( book.call(jonas, 23, 'Jonas Schmedtmann) ). 
+                          jonas is the this keyword and the rest of the arguments is like normal arguments.
+            *apply():
+                    .apply method does not receives arguments after the this keyword like call method
+                    .it take an array of arguments.
+                    .not used in modern js. better is call method;
+                    .eg( bood.apply(jonas, flightData) ). flightData is an array. jonas is this keyword
+            *bind(): 
+                    .bind method does not immediatly call the function.
+                    .instead it returns a new funtion where the this keyword is whatever the values we pass into the bind.
+                    .eg( const bookEw = book.bind(eurowings)
+                         bookEw(23, 'steven Williams')). 
+                    the bind method returned a funtion,
+                    and it is stored in bookEw variable . 
+                    where the bookEw has the eurowings bound as the this keyword.
+
+
+TODO:. In closure a function has access to the variable enviornment of the execution context in which the functiion was created,
+        even after that execution context is finished executing.
+    .A closure is the closed over variable enviornment of the execution context in  which a funcion was created, 
+        even after that execution context is gone.
+    .A closure give a function access to all the variable of its parent function , even after that parent function has returned.
+        the function keeps reference to its outer scope, which preserves the scope chain throughout time.
