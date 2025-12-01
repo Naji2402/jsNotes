@@ -40,6 +40,21 @@ TODO:. findIndex method in an array is used to loop through an array and returns
      }));
         returns the first element that has  the name property equal to Messi.
 
+TODO:. The object.groupby method in js loops throug an iterable like an array and turns it into an object according to the string values returned from a callback function.
+     .  eg( let variable = Object.groupBy(array, (a) => {
+            return a > 0 ? 'first' : 'second'
+       }) )
+       This retuns an Object with two keys named first and second.The first and second will be an array. the first array will have the positive values and the other will have the negative values. 
+     . eg( const groupedAccount = Object.groupBy(array, (arr) => acc.type) )
+         this will make a new object and group it int arrays based on the type of the objects.
+
+TODO:. The toReversed method is used to reverse an array without mutating the original array.
+        unlike reverse method toReversed method does not change the original array.
+     . eg( arr.toReversed() )
+        this will take a copy of the arr array and reverse the array.
+     . SIMILAR( ( toReversed(), reverse() ), (toSorted(), sort() ), ( toSpliced(), splice() ))
+        these are the other method similar to the toReversed method
+
 SECTION 10 FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
 
 TODO: .Js Does not have passing by reference. 
@@ -103,3 +118,4 @@ TODO:. In closure a function has access to the variable enviornment of the execu
         even after that execution context is gone.
     .A closure give a function access to all the variable of its parent function , even after that parent function has returned.
         the function keeps reference to its outer scope, which preserves the scope chain throughout time.
+
