@@ -53,7 +53,27 @@ TODO:. The toReversed method is used to reverse an array without mutating the or
      . eg( arr.toReversed() )
         this will take a copy of the arr array and reverse the array.
      . SIMILAR( ( toReversed(), reverse() ), (toSorted(), sort() ), ( toSpliced(), splice() ))
-        these are the other method similar to the toReversed method
+        these are the other method similar to the toReversed method.
+
+TODO:. Which array method to use.
+            * To Mutate the original array.
+                    .push(), pop(), shift(), unshift(), splice(), reverse(), sort(), fill();
+            * Non destructive versions of reverse(), sort(), splice().
+                    .toReversed(), .toSorted(), .toSpliced()
+            * To make a new array based on the original.
+                    .map(), filter(), slice(), with(), flat(), flatMap(), concat().
+            * To get an index.
+                    .indexOf(), findIndex(), findLastIndex().
+            * To get an array element.
+                    .find(), findLast();
+            * Know if array includes.
+                    .includes(), some(), every();
+            * transform array to a new string.
+                    .join()
+            * To transform an array to a single value.
+                     .reduce()
+            * To loop through an array.
+                    .forEach()
 
 SECTION 10 FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
 
