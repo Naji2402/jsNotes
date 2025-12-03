@@ -1,6 +1,142 @@
 FIXME: SECTIONS
 TODO: MAIN TOPICS
 
+SECTION 13: ADVANCED DOM AND EVENTS FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
+
+TODO:. To implement scrolling on the website use window.scrollTo method.
+        it enable us to scroll to a specific set of coordinates within the browser window.
+     .syntax( 
+        .window.scrollTo(xCoord, yCoord)
+        .window.scrollTo(options)
+           options is an object contains properties to define the scroll behaviour.
+           left, top, behaviour: 'smooth', 'instant', 'auto'
+      )
+      .eg(
+        window.scrollTo(0, 200) //scroll the page to a position 200 pixel from the top and 0 pixel from the left
+        window.scrollTo({
+                top: 500,
+                left: 0,
+                behaviour: 'smooth'
+        }) // scroll the page to a poistion 500px from the top, 0 from the left and with a smooth behaviour;
+      )
+
+TODO:. scrollIntoView method is another method to implement scrolling.
+     .syntax(
+           element.scrollIntoView(options) //scrolls to the element defined in front of the method.
+      )
+     .eg(
+        element.scrollIntoView({behaviour: 'smooth'}) //scrolls to the element definded in front of the method is a smooth behavior.
+     )
+
+TODO:. getBoundingClientRect is a javascript method that returns the size of an element and its position relative to the viewport(the visible area of the browser window) .
+        it tells you where an element is on the screen and how big is it, relative to what the user sees right now.
+     .syntax(
+        element.getBoundingClientRect();
+     )
+     .eg(
+        const rect = element.getBoundingClientRect(); //returns a object containing numberic properties
+        //output {
+                x: 20,
+                y: 100,
+                width: 200,
+                height: 80,
+                top: 100,
+                right: 220,
+                bottom: 180,
+                left: 20
+        }   
+     )
+
+TODO:. The pageXOffset and pageYOffset are properties that tell you how far the page has been scrolled.
+        they measure scroll distance relative to the top-left corner of the document.
+        it give how many pixels yoy have scrolled from the top and right.
+      . eg (
+        window.pageXOffset // the output will be 0
+        window.pageYOffset // the outut will be 350
+      )  
+
+TODO:. Event propagation in javascript describes how an event travels through the DOM from the moment its triggered until it finishes 
+     . In javascript, when an event occurs(like a click), it does'nt just fire on the element you clicked.
+        it goes throught three phases.
+                1. Caturing phase
+                        Event travels from the window > document > body > parent > elements > target element
+                2. Target phase 
+                        Event reaches the actual element clicked.
+                3. Bubbling Phase(Event Bubble)
+                        Event travels back up from the targer > its parents > up to the document > window         
+
+TODO:. The getAttibute() in javascript is a method used to read the value of an attribute from an HTML element.
+          it retreives the string value of an attribute exactly as it appears in the HTML   
+     . syntax(
+        element.getAttibute(attributeName);
+     )  
+     . eg(
+        <div id='box' date-info="hello"></div>
+        const div = document.getElementById("box");
+        console.log(div.getAttibute("id")) // "box"
+        console.log(div.getAttibute("data-info")) // "hello"
+     )   
+
+TODO:. DOM traversing in javascript refers to the process of navigating the DOM to access and maniplate the elements within an HTML document.
+        This allow you to move between the nodes, exploring their relationships and finding specific elements
+
+TODO:. The closest method in javascript is a way to traverse the DOM tree upwards from a given element.
+        searching for the nearest ancester or the element that matches a specified css selector
+     . eg(
+        element.closest('.header') // returns the closest element from the elements that has a class named header.
+     )   
+
+TODO:. The Intersection Observer API provides a way to observe changes in the intersection target elements with an root element or with the document's viewport.
+         .target element is the DOM element to observe for intersection changes.
+         .root is the element that the target is intersecting.
+             we can set it to an element. setting it into null will enable the intersecting to the viewport. that is the viewport will be the root element.
+         .threshold is the percentage of intersection at which the callback funcion will be called.
+         .rootMargin is will the the value given to the outside of the targer element(eg '90px' , 90px to the outside of the target element)
+     . The callback funcion will  get called each time the target element is intersecting the root element at the threshold that we defined
+     .the callback function will get passed a entries and observer 
+        the entries passed to the callback contains     
+                        .entry.targer
+                        .entry.isIntersecting
+                        .entry.intersectionRation
+                        .entry.getBoundingClientRect
+                        .entry.intersectionRect
+                        .entry.rootBounds
+     . syntax(
+        new intersectionObserver(<callBack funcion>, <options>)
+        options can contain, root, threshold.
+        eg(
+                const options = {
+                        root: null, 
+                        threshold: 0.1,
+                        rootMargin: '90px'
+                }
+
+                funcion callback(entries, observer) {
+                        console.log(entries)
+                }
+
+        )
+     )   
+     .eg(
+        const obsCallback = function (entries, observer) {
+
+        entries.forEach(entry => {
+                console.log(entry);
+        })
+        };
+
+        const observerOptions = {
+                root: null,
+                threshold: 0.1,
+        };
+
+        const observer = new IntersectionObserver(obsCallback, observerOptions);
+        observer.observe(<element>);
+
+     )
+
+TODO:. 
+
 SECTION 12: NUMBERS, DATES, INTI, TIMERS FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
 
 TODO:. Type conversion and Coercion Refer to the process of changing a value from one data type to another.
