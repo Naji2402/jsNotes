@@ -1,6 +1,37 @@
 FIXME: SECTIONS
 TODO: MAIN TOPICS
 
+SECTION 15: MAPTY APP:OOP, GEOLOCATION,EXTERNAL LIBRARIES, AND MORE
+
+TODO:. use the LeafLet library to implement a map in the website.
+
+TODO:. The setView method is a leaflet method is a core funcion of a map object, that allows you to define the center point and zoom level of the map's display.
+     .syntax(
+        map.setView([latitude, longitude], zoomLevel, options)
+     ) 
+     .eg(
+        map.setView([51.505, -0.09], 13, {
+          animate: true,
+          pan: {
+            duration: 1
+          }
+        })
+     )
+
+TODO:. The Localstorage is an api that the browser provides to us.
+     *. To save data we use the setItem method of the Localstorage.
+        eg( LocalStorage.setItem('key', 'value'))
+     . when we save the data through the setItem the value must be a string or must be converted to a string using the JSON.stringify method.
+     . eg(
+        localStorage.setItem('workouts', JSON.stringify(value)); // saves the date with key workout and value as value that we given
+     )  
+
+     *. To get the data we saved the getItem method is used
+      . syntax ( localStorage.getItem('key')) 
+      . eg(
+        localStorage.getItem('workouts'); // gets the value with the key workouts
+      )
+
 SECTION 14: OBJECT ORIENTED PROGRAMMING(OOP) FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
 
 TODO:. .Classes are just 'Syntactic sugar' over constructor funtions.
