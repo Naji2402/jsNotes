@@ -1,7 +1,92 @@
 FIXME: SECTIONS
 TODO: MAIN TOPICS
 
-SECTION 15: MAPTY APP:OOP, GEOLOCATION,EXTERNAL LIBRARIES, AND MORE
+SECTION 16: ASYNCHRONOUS JS: PROMISES, ASYNC/AWAIT AND AJAX. FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
+
+TODO:. . Asynchronous code is executed after a task runs in the background finishes.
+       . Asynchronous code in non-blocking;
+       . Execution does't wait for any asynchronous task to finish its work;
+       . Callback functions alone do not make code asynchronous!.
+       
+TODO:. AJAX(Asynchronous Javascript And XML): Allows us to communicate with remote web servers in an asynchronous way.
+        with AJAX calls, we can request data from web servers dynamically.
+     .    
+
+TODO:. API(Application Programming Interface): is a Piece of software that can be used by another Piece of software, 
+        in order to allow applications to talk to each other.
+     . There are many types of API,s in web development
+                .DOM API.
+                .Geolocation API.
+                .Own class API.
+                .Online Api:
+                        Application running on a server that receives request for data and sends data back as response.
+
+TODO: JSON data format is the most popular API data format.   
+
+TODO:. Promise: an object that is used as a placeholder for the future result of an asynchronous operation.
+        .a container for an asynchronous delivered value.
+        .a container for a future value.
+
+TODO:. All the Asynchronous tasks like timers, AJAX calls will run on the web API's Enviornment of the browser.
+     . The callBack queue is basically an ordered list of all the callback functions that are in line to be executed.
+        all the callback from an asynchronous tasks are put into the back of the  callback queue after the asynchronous task completed.(after fetching the api the callback function will be put to the callback queue).
+
+TODO:. All the callBacks from the DOM events like the click events are also stored in the callback queue.
+
+TODO:. The event loop looks at the call stack of it is empty except for the global context.
+        if the call stack is empty (no code in execution) the events loop will take the first callback from the callback queue and put it into the call stack to be executed.
+     . The event loop decides when each callback is executed.
+
+TODO:. The callback from a promise is not put into the callback queue.
+     . It is put into a special queue called microtask queue.
+     . the microtask queue have priority over the callBack queue.
+     . if the callstack is empty the event loop will first check if there is any callback in the microtask queue. if there is it will run all of them before it will run any callbacks from the callback queue.
+
+TODO:. Promise combinators in javascript are static methods on the promise object that allow for handling multiple concurrently and reacting to their collective or individual settlement states.
+        they are useful for managing complex asynchronous operations involving multiple independent tasks.
+     . Promise combinators are.
+                1.Promise.all(iterable):
+                        . if all promises resolve it returns a single promise that resolves to an array of their results, in the same order as the input iterable.
+                        . if any promise rejects, Promise.all immediatly rejects with the reason of the first rejected promise.
+                        . eg(
+                                const p1 = Promise.resolve(1)
+                                const p2 = Promise.resolve(2)
+                                const p3 = Promise.resolve(3)
+
+                                Promise.all([p1, p2, p3]).then(res => console.log(res)) // Output: [1, 2, 3]
+                        )
+                2.Promise.race(iterable):
+                        . receives an array of promises and return a promise.
+                        . the promise that retuned is settled as soon as one of the input promises settles.
+                        . eg(
+                                const pFast = new Promise(res => setTimout(() => res('fast'), 50))
+                                const pSLow = new Promise(res => setTimout(() => res('slow'), 100))
+
+                                Promise.race([pFast, pSLow]).then(res => console.log(res)) // Output: "fast"
+                        )
+                3.Promise.allSettled(iterable):
+                        . receives an array of promises and return a array of all the settled promises.
+                        . it never short circuits when one of the promise got rejected
+                        . eg(
+                                Promise.allSettled([
+                                        Promise.resolve('success'),
+                                        Promise.reject('error'),
+                                        Promise.resolve('another')
+                                ]).then(res => console.log(res)) // Output: [{...}, {...}, {...}]
+                        )
+                4.Promise.any(iterable):
+                        . receives an array of promises and return a promise that resolves first with the value of the promise that resolves.
+                        . rejected promises are ignored.
+                        . eg(
+                                Promise.any([
+                                        Promise.resolve('success'),
+                                        Promise.reject('error'),
+                                        Promise.resolve('another')
+                                ]).then(res => console.log(res)) // Output: 'Success'
+                        )
+
+
+SECTION 15: MAPTY APP:OOP, GEOLOCATION,EXTERNAL LIBRARIES, AND MORE FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
 
 TODO:. use the LeafLet library to implement a map in the website.
 
@@ -615,4 +700,21 @@ TODO:. In closure a function has access to the variable enviornment of the execu
         even after that execution context is gone.
     .A closure give a function access to all the variable of its parent function , even after that parent function has returned.
         the function keeps reference to its outer scope, which preserves the scope chain throughout time.
+
+
+FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
+
+* The javascript engine is the heart of the runtime.
+        . The javascript engine conains a heap and a call stack.
+        . The heap is where the object are stored in memory.
+        . The call Stack is where the code is really executed.
+        . javascript can do only one thing at a time. it has single thread execution.
+
+* The web API's are the API's provided to the engine which are not part of the javascript.
+        .eg( DOM, Timers, Fetch API, Geolocation etc....)
+
+* The callBack queue is basically an ordered list of all the callback functions that are in line to be executed
+
+* The callBack queue holds all the ready to be executed callBack funcions (coming from events).
+        .whenever the call stack is empty the event loop takes call backs from the callBack queue and put them in the call stack so that they can be executed.
 
