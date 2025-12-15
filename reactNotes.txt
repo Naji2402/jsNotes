@@ -1,0 +1,129 @@
+MAIN TOPICS: FIXME:FIXME:FIXME:FIXME:
+SUB TOPICS : TODO:TODO:TODO:TODO:TODO:
+
+FIXME:. REACT COMPONENT STYLING.
+    .There are 3 ways to style a react component with css.
+        1). External.
+                .creating a external css file and importing to the jsx file.
+        2). Modules.
+                .recommended way of styling.
+                .create a folder for the component and create a module css file and import.
+                .eg Button > Button.jsx, Button.module.css 
+        3). Inline.
+                .create an object inside the component itself and put it inside the component.
+                .eg(
+                    function Button() {
+                        const styles = {
+                            backgroundColor: " hsl(200, 100%, 50%)",
+                            color: "white",
+                            padding: "10px 20px",
+                            borderRadius: "5px",
+                            border: "none",
+                            cursor: "pointer",
+                        };
+                        
+                        return (
+                            <>
+                            <button style={styles}>Click Me</button>
+                            </>
+                        );
+                    }
+                )
+            
+FIXME:. PROPS
+        . props are read-only properties that are shared between components.
+        . a parent component can send data to a child component.
+        . in order for a component to accept props the component function needs a props parameter.
+        . the props parameter is goint to be a javascript object.
+        . in order to use the key value that we passes from the parent we use the props.key
+            eg( 
+
+                function App() {
+                    return(
+                        <>
+                            <Student name='SpongeBob' age={30} isStudent={true}/>
+                        </>
+                    );
+                }
+
+                function Student(props){
+                    return(
+                        <p>Name: {props.name}</p>
+                        <p>Age: {props.age}</p>
+                        <p>Student: {props.isStudent ? 'Yes' : 'No'}</p>
+                    );
+                }
+            )
+
+    .TODO:. defaultProps
+                . defaultProps are default values for props in case they are not passed from the parent component.
+                . eg(
+                    import Student from "./Student";
+
+                    function App() {
+                        return(
+                            <>
+                                <Student />
+                            </>
+                        );
+                    }
+
+
+                    function Student({name = 'Guest', age=0, isStudent=false}) {
+                        return(
+                            <>
+                            <div className="student">
+                                <p>Name: {name}</p>
+                                <p>Age: {age}</p>
+                                <p>Student: {isStudent ? 'Yes' : 'No'}</p>
+                            </div>
+                            </>
+                        );
+                    }
+                )
+
+FIXME:. Conditional Rendering.
+             . Conditional Rendering allows us to control what gets rendered in the application based on certain conditions.
+             . (show, hide, or change components).
+             .eg(
+                function App() {
+                    return(
+                        <>
+                        <UserGreeting isLoggedIn ={true} username = 'Lionel Messi' />
+
+                        </>
+                    );
+                }
+
+                function UserGreeting(props) {
+                    if (props.isLoggedIn) {
+                        return(
+                            <h2>Welcome {props.username}</h2>
+                        )
+                    }else {
+                        return(
+                        <h2>Please log in to continue</h2>
+                        )
+                    }
+                }
+             )
+
+FIXME:. React hooks.
+            .React hooks are special functions that allows functional components to use React features without writing class components.
+            .useState, useEffect, useContext, useReducer, useCallback, and more.
+
+    TODO:. useState():
+                . useState is a react hook that allows the creating of a stateful varible and a setter function to update its value in the virtual DOM.
+                . the useState hook return the value and a setter function
+                . the setter function is used to change the value. if we dont use the setter function the component won't re render and the dom wont update.
+                . let [name, setName] = useState(); in this the name is the value and the setName is the setter function.
+                        to change the name we need to use the setName setter function.
+                        setName("Neymar") this will cause the component to re render and the name will be updated to Neymar, updates will be reflected in the dom.
+
+                .eg(
+
+                    let [name, setName] = useState();
+                    // to change the name we need to use the setter function ie setName.
+                    setName("Messi") // this will cause a re render of the component and change the dom. 
+                                if we try to normally change the name name="messi" it wil not cause a re render and the dom won't be updated
+                )
