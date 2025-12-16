@@ -1,6 +1,8 @@
 MAIN TOPICS: FIXME:FIXME:FIXME:FIXME:
 SUB TOPICS : TODO:TODO:TODO:TODO:TODO:
 
+BROCODE NOTES FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
+
 FIXME:. REACT COMPONENT STYLING.
     .There are 3 ways to style a react component with css.
         1). External.
@@ -119,6 +121,9 @@ FIXME:. React hooks.
                 . let [name, setName] = useState(); in this the name is the value and the setName is the setter function.
                         to change the name we need to use the setName setter function.
                         setName("Neymar") this will cause the component to re render and the name will be updated to Neymar, updates will be reflected in the dom.
+                . The useState hook also has a updater function. it is a function passed as as argument to the setter function.
+                    it allow for safe updates based on the previous state used with multiple statte updates and synchronous functions.
+                    setName(prevName => prevName + 'Bye' )
 
                 .eg(
 
@@ -127,3 +132,65 @@ FIXME:. React hooks.
                     setName("Messi") // this will cause a re render of the component and change the dom. 
                                 if we try to normally change the name name="messi" it wil not cause a re render and the dom won't be updated
                 )
+    TODO:. useEffect():
+                . useEffect is a react hook that tells React Do some code when 
+                    This component re-renders
+                    This component mounts
+                    The state of a value
+                .useEffect(function, [dependencies])
+                    .useEffect(() => {})           //Runs after every re-render.
+                    .useEffect(() => {}, [])       //Runs only on mount.
+                    .useEffect(() => {}, [value])  //Runs on mount + when value changes
+                .USES
+                    .#1 Event Listeners.
+                    .#2 DOM manipulation.
+                    .#3 Subsciptions (real-time updates).
+                    .#4 Fetching Data from an API.
+                    .#5 Clean up when a component unmounts.
+                .eg(
+                    const [count, setCount] = useState(0);
+
+                    useEffect(() => {
+                        document.title = `Count ${count}`
+                    }, [count]) 
+
+                    .every time the count change the function will run.
+                    .if the dependencies array was empty [] the function will run only once when the component mount(when its added to the dom).
+                    .if there is no dependencies array the function will run after each re render of the component.
+                )
+
+    TODO:. useContext():
+                . useContext hook is a react hook that allows you to share values between multiple levels of components without passing props through each level.
+                .PROVIDER COMPONENT:
+                    1). import {createContext} from 'react';
+                    2). export const MyContext = createContext();
+                    3). <MyContext.Provider value={value}>
+                            <Child />
+                        <MyContext.Provider>
+                .CONSUMER COMPONENT:
+                    1). import React, { useContext } from 'react';
+                        import { MyContext } from '<provider component>'
+                    2). const value = useContext(MyContext)
+
+    TODO:. useRef():
+                .UseRef hook is a  react hook. "use Reference" Does not cause re-renders when its value changes. when you want a component to "remember" some information,
+                    but you don't want that information to trigger new renders.
+                .useRef returns a object.
+                    the object will look like {current: initialValue}
+                .USES:
+                    1). Accessing / Interacting with DOM elements.
+                    2). Handling Focus, Animations, and Transitions.
+                    3). Managing Timers and Intervals.
+                .eg(
+                    const ref = useRef(0);
+
+                    //The object looks like: { current: 0}
+
+                    function handleClick() {
+                        ref.current++;
+                        console.log(ref.current);
+                    }
+                    
+                    //this will increase the initialValue on each click but does not re render the component.
+                )
+                    
