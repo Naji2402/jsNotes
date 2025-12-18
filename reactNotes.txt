@@ -1,6 +1,220 @@
 MAIN TOPICS: FIXME:FIXME:FIXME:FIXME:
 SUB TOPICS : TODO:TODO:TODO:TODO:TODO:
 
+CODEEVOLUTION NOTES FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
+
+FIXME:. Rules of hooks
+        .Only call Hooks at the Top Level.
+            Don't call Hooks inside loops, conditions, or nested functions.
+        .Only Call Hooks from React functions.
+            Call them from within React functional components and not just any regular javascript function.
+    
+TODO: useReducer():
+            .useReducer is a a react hook that is used for state management.
+            .it is an alternative to useState hook.
+            .useState is built using useReducer.
+            .useReducer is similar to the reduce method of javascript.
+            .syntax(
+
+                //Reduce is javascript
+                    array.reduce(reducer function, initialValue)
+                    singleValue = reducer(accumulator, itemValue) //return a single value
+
+
+
+                //useReducer in React
+                    useReducer(reducer function, initialState)
+                    newState = reducer(currentState, action) //return a pair of values. [newState,  dispatch]
+            )
+            .WHEN TO USE
+                        ---------------------------------------------------------------
+                       | Scenario        |        useState           |      useReducer  |
+                        ---------------------------------------------------------------
+                        .Type of state   | .Number,string, Boolean  | .Object or Array       
+                        .No of state     | .One or two              | .Too many
+                            transitions  |                          |
+                        .Related state   | .No                      | .Yes
+                            transitions  |                          |
+                        .Business logic  | .No business logic       | .Complex business logic
+                        .Local vs Global | .Local                   | .Global   
+            .eg(
+                const initialState = 0;
+
+                function reducer(state, action) {
+                switch(action){
+                    case 'increment':
+                        return state + 1
+                    case 'decrement':
+                        return state - 1
+                    case 'reset':
+                        return initialState
+                    default:
+                        return state
+                }
+                }
+
+                function MyComponent() {
+                
+                const [count, dispatch] = useReducer(reducer, initialState)
+
+                return (
+                    <>
+                    <div>
+                        <div>Count - {count}</div>
+                        <button onClick={() => dispatch('increment')}>Increment</button>
+                        <button onClick={() => dispatch('decrement')}>Decrement</button>
+                        <button onClick={() => dispatch('reset')}>Reset</button>
+                    </div>
+                    </>
+                );
+                }
+            )
+
+FIXME:. REACT ROUTER:
+            . To setup React Router install the react router package using the command npm install react-router-dom@latest.
+            . in the main.jsx file import BrowserRouter from react-roter-dom, then wrap the App component inside the BrowserRouter.
+            . in the App component file import Routes and Route from react-router-dom.
+            . after importing inside the return jsx of App component, open a Routes component.
+            . within the Routes component we define the individual routes using the Route component.
+            . on the route component we specify two props.
+                1) path: the Path in the url.
+                2) element: when the url matches the path this element will be rendered.
+                    eg( <Route path="/" element={<Home />}></Route> ) // when the url mathces the / path the Home component will be rendered.
+
+TODO:TODO:. REACT ROUTER LINKS:
+                .to navigate to different routes using elements in the UI.
+                .import the Link from react-router-dom package.
+                .after import instead of using the anchor tag(<a href="#"></a>) use the Link component.
+                .the link component will be automaticaly converted into anchor tag, while we inspect the page.
+                .the Link component accept a parameter of to where you give the path.
+                    eg(  
+                        <Link to='/'>Home</Link>
+                        <Link to='/about'>About</Link>
+                    )
+                .after that import it into the app component
+                    eg(
+                        <NavBar />
+                        <Routes>
+                            <Route path="/" element={<Home />}></Route>
+                            <Route path="about" element={<About />}></Route>
+                        </Routes>
+                    )
+
+TODO:. There is also another link component in the react-router-dom called NavLink
+     . The NavLink  component is similar to the Link component.
+     . The difference is that the NavLink by default it receives an active class when the link is the current route.
+     . we can use the class active to style it.
+     . eg(
+        nav a.active{
+            text-decoration: none;
+            font-weight: bold;
+        }
+     )
+                
+TODO:. useNavigate()
+            . the useNavigate hook is a react hook that is used to navigate programatically.
+            . first import it from the react-router-dom package.
+            . after importing invoke the hook inside the component and store it into a varibale.
+            . we can now use the varible to programatically navigate.
+            . on a button click we can pass the navigate and pass the path as parameter inside the navigate.
+            . we can also implement the back button using the use navigate hook.
+            . eg(
+                import { useNavigate } from "react-router-dom";
+
+                function Home() {
+                 const navigate = useNavigate();
+                    return(
+                        <>
+                            <div>Home Page</div>
+                            <button onClick={() => navigate('path to the page')}>Go to next page</button>
+                        </>
+                    )
+                }
+
+                // implementing back button
+                 <button onClick={() => navigate(-1)}>Go back</button>
+                 this will navigate back to the previous route.
+
+            )
+
+TODO:. No Match Route.
+            . No Match route is used when no path find match with the URL.
+            . We can create a NoMatch component and render it when no match is found in the path.
+            . add a new Route in the App.js and set the path of it to a * and element as the NoMatch component.
+            . the * has a special meaning in React. it will match route only when no other route matches.
+            . eg(
+                <Route path="*" element={<NoMatch />}></Route>
+                when no other route matches this route will render the NoMatch component.
+             )
+
+TODO:. Nested Routes.
+            . Nested Routes is a way to orgainze routes where a parent route controls the layout and a portion of the UI for its child routes.
+            . This allows to update only specific sections of a page.
+            . However to render the child routes we need to use the Outlet that is imported from react router dom. use it where you need the child components to render.
+            . eg (
+                <Route path="products" element={<Products />}>
+                    <Route path="featured" element={<FeaturedProducts />}></Route>
+                    <Route path="new" element={<NewProducts />}></Route>
+                </Route>
+
+                // in this exapmple the parent route is products and the child routes is featured and new.
+                   while routing to the child routes the path on the url will look like localhost:5173/products/featured, localhost:5173/products/new.
+            )
+
+TODO:. Index Route.
+            . Index Route is a special child route like nested route that renders by default when the user visit the parent Route.
+            . it acts as a default view or landing page for that section.
+            . instead of the path is receives a index parameter and element parameter.
+            . the index parameter will use the path of the parent element.
+            . eg(
+                <Route path="products" element={<Products />}>
+                    <Route index element={<FeaturedProducts />}></Route>
+                    <Route path="featured" element={<FeaturedProducts />}></Route>
+                    <Route path="new" element={<NewProducts />}></Route>
+                </Route>
+
+                // in this exapmple when the user goes to the parent products route the FeaturedProducts route will be also rendered default,
+                    because we defined it as a index route.
+
+            )
+
+TODO:. Dynamic Route.
+            . Dynamic Route is a method for creating flexible, data-driven pages using a single route configuration, rather than defining a seperate, state, route for every possible URL.
+            . eg (
+                <Route path="users/:userId" element={<UserDetails />}></Route>
+
+                // in this example whe the URl is users/anything it it will search if there is any routes with fixed element with a fixed path, 
+                    if there is it will render that element in the given path,
+                    if there is not then ther UserDetails element is rendered. 
+            )
+
+
+TODO:. useParams hook allows to access dynamic parameter from the current URL
+        . first import useParams from react-router-dom.
+        . after importing invoke it inside the component and store it in a variable.
+        . eg(
+            const params = useParams(); // this will return a object with a userId property, because we set the dynamic route as userId.
+            const userId = params.userId; // extract the userId from the object.
+        )
+            
+TODO: . useSearchParams():
+            . the useSearchParams is a react hook similar to the useState hook, instead of storing the state in memory the useSearchParams store in the URL.
+            . import it from react-router-dom and invoke it inside the component.
+            . useSearchParams return two values, a object and a function to set the searchParams.
+            . using the function we can add or remove parameter
+            . to get hold of the parameter we use the get method on the value returned. eg( const val = value.get(<param name>));
+            . eg(
+                const [searchParams, setSearchParams] = useSearchParams();
+
+                <button onClick={() => setSearchParams({ filter: 'active'})}>Active</button> // while clicking the URL will look like localhost:3000/users/filter=active. added a parameter
+                <button onClick={() => setSearchParams({})}>Reset</button> // while clicking the parameter is reseted. localhost:3000/users
+
+                const showActiveUsers = searchParams.get('filter') // now we can check if it is acive using this variable.
+
+                //
+            )
+
+
 BROCODE NOTES FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
 
 FIXME:. REACT COMPONENT STYLING.
@@ -147,6 +361,17 @@ FIXME:. React hooks.
                     .#3 Subsciptions (real-time updates).
                     .#4 Fetching Data from an API.
                     .#5 Clean up when a component unmounts.
+                .the useEffect hook also has a cleanup function.
+                    when we return a function inside the useEffect hook it is a cleanup function.
+                    the cleanup function will execute when the component unmounts(when removed)
+                    eg(
+                        useEffect(() => {
+
+                            return () => {
+
+                            } //cleanup function, run when the component unmounts.
+                        })
+                    )
                 .eg(
                     const [count, setCount] = useState(0);
 
@@ -190,7 +415,7 @@ FIXME:. React hooks.
                         ref.current++;
                         console.log(ref.current);
                     }
-                    
+
                     //this will increase the initialValue on each click but does not re render the component.
                 )
                     
