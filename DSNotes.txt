@@ -1,0 +1,1542 @@
+FIXME:FIXME:FIXME:FIXME:. Javascript Algorithms
+
+
+FIXME:. TIME AND SPACE COMPLEXITY.
+
+     *Time Complexity:
+            .the amount of time taken by an algorithm to run, as a function of input size.
+     *Space Complexity:
+            .the amount of memory taken by an algorithm to run, as a function of input size.
+
+TODO:TODO:. How to represent Complexity.
+            .we do this using asymptotic notations
+            .asymptotic notations are mathematical tools to represent time and space Complexity.
+            .There are 3 asymptotic notations.
+                1). Big-O Notation(O-notation)
+                    .for Worst case complexity.
+                2). Omega Notation(Ω-notation)
+                    .Best case complexity.
+                3). Theta Notation(Θ-notation)
+                    .average case complexity.
+
+                    
+    
+    TODO:. Big-O Notation(O-notation)
+                .The Worst case complexity of an algorithm is represented using the Big-O notation.
+                .Big-O notation describes the complexity of an algorithm using algebraic terms.
+                .as the size of the input increases the time complexity also increases.
+                .it has 2 imp characteristics.
+                    1)it is expressed in terms of the input.
+                    2)it focuses on the bigger picture without getting caught up in the minute details.
+                .eg
+                1)function summation(n) {
+                    let sum = 0;
+                    for(let i=1; i<=n; i++){
+                        sum += i;
+                    }
+                    return sum;
+                }
+                   O(n)-linear //as the size of input increases the time complexity also increases.
+
+                2)function summation(n) {
+                    return (n * (n + 1)) / 2;
+                }
+                O(1)-constant
+                *Time Complexity:
+                    .O(n)-linear.
+                    .O(1)-constant.
+                    .O(n^2)-Quadratic.
+                    .O(n^3)-Cubic.
+                    .O(logn)-Logarithmic.
+
+    .Object - Big-O:
+        .An object is a collection of key value pairs.
+        .insert - O(1)
+        .remove - O(1)
+        .Access - O(1)
+        .Search - O(n)
+        .Object.Keys() - O(n)
+        .Object.Values() - O(n)
+        .Object.entries() - O(n)
+    
+    .Array - Big-O:
+        .An arrya in an ordered collection of values.
+        .insert / remove at end - O(1)
+        .insert / remove at beginning - O(n) //because the index has to be reset for every elements in the array.
+        .Access - O(1)
+        .Search - O(n)
+        .Push / Pop - O(1)
+        .shift / unshift / concat / slice / splice - O(n)
+        .forEach / map / filter / reduce - O(n)
+        
+TODO:. Big-O Guide
+            .Calculation not dependent on input size - O(1).
+            .loop - O(n).
+            .nested loops - O(n^2).
+            .input size reduce by half - O(logn).
+
+
+TODO:TODO:. Recursion
+                .Recursion is a problem solving techniqye where the solution depends on solutons to smaller instance of the same problem.
+                .Recursion is when a function calls itself.
+                .a great technique to simplify your solution
+                .Every recursive solution needs to have a base case -- a condition to terminate the recursion.
+                .Recursion might simplify a problem but it does not always translate to a faster solution. 
+                    A recursive solution may be far worse compared to an interative solution.
+
+TODO:TODO:. Search algorithms
+                .Linear search.
+                .Binary search.
+
+    TODO:. Linear search.
+            .start at the first element in the array and move towards the last.
+            .at each element, check if the element  is equal to the target element.
+            .if element found, return the index of the element.
+            .eg(
+                function linearSearch(arr, target) {
+                    for (i = 0; i < arr.length; i++) {
+                        if (arr[i] === target) {
+                        return i;
+                        }
+                    }
+                    return -1;
+                    }
+
+                console.log(linearSearch([-5, 2, 10, 4, 6], 10)); // 2
+                console.log(linearSearch([-5, 2, 10, 4, 6], 6)); // 4
+                console.log(linearSearch([-5, 2, 10, 4, 6], 20)); // -1
+                console.log(linearSearch([-5, 2, 10, 4, 6], -5)); // 0
+
+                Big-O = O(n) // linear
+
+            )
+    TODO:. Binart search.
+            .Only works on sorted array.
+            .if the array is empty, return -1 as the element cannot be found.
+            .if the array has elements, find the middle element in the array. if target is equal to the middle element, return the middle element index.
+            .if the target is less than the middle element, binary search left half of the array.
+            .if the target is higher than the middle element, binary search right half of the array.
+            .eg(
+                function binarySearch(arr, t) {
+                    let leftIndex = 0;
+                    let rightIndex = arr.length - 1;
+
+                    while(leftIndex <= rightIndex){
+                    let mid = Math.floor((leftIndex + rightIndex) / 2)
+                    if (t === arr[mid]) {
+                        return mid
+                    }
+                    if (t < arr[mid]) {
+                        rightIndex = mid - 1
+                    }else {
+                        leftIndex = mid + 1
+                    }
+                    }
+                    return -1
+                }
+
+                console.log(binarySearch([-5, 2, 4, 6, 10], 10)); // 4
+                console.log(binarySearch([-5, 2, 4, 6, 10], 6)); // 3
+                console.log(binarySearch([-5, 2, 4, 6, 10], 20)); // -1
+
+
+            Big-O = O(logn) // logarithmetic
+            )
+
+    TODO:. Recursive binary search.
+                . eg(
+                    function recursiveBinary(arr, target) {
+                            return search(arr, target, 0, arr.length-1)
+                        }
+
+                        function search(arr, target, leftIndex, rightIndex) {
+                        if (leftIndex > rightIndex) {
+                            return -1;
+                        }
+
+                        let middleIndex = Math.floor((leftIndex + rightIndex) / 2)
+                        if (target === arr[middleIndex]) {
+                            return middleIndex
+                        }
+
+                        if (target < arr[middleIndex]) {
+                        return search(arr, target, leftIndex, middleIndex - 1)
+                        }else {
+                        return search(arr, target, middleIndex + 1, rightIndex)
+                        }
+                    }
+
+                        console.log(recursiveBinary([-5, 2, 4, 6, 10], 10)); // 4
+                        console.log(recursiveBinary([-5, 2, 4, 6, 10], 6)); // 3
+                        console.log(recursiveBinary([-5, 2, 4, 6, 10], 20)); // -1
+
+                        // Big-O = O(logn) // logarithmic
+                )
+
+
+TODO:TODO:. Sorting Algorithms.
+
+TODO:. Bubble Sort.
+        . it is a poor sorting algorithm.
+        . eg(
+            function bubbleSort(arr) {
+                let swapped;
+                do {
+                swapped = false;
+                for (let i = 0; i < arr.length - 1; i++) {
+                    if (arr[i] > arr[i + 1]) {
+                    let temp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
+                    swapped = true;
+                    }
+                    }
+                } while (swapped);
+                }
+
+                const arr = [8, 20, -2, 4, -6];
+                bubbleSort(arr);
+
+            // Big-O = O(n^2) // quadratic
+
+        )
+
+
+TODO:. Quick Sort.
+        . Quick sort uses divide and conquer strategy.
+        . Identify the pivot element in the array.
+            . pick the first element as pivot.
+            . pick the last element as pivot (recommended) .
+            . pick a random element as pivot.
+            . pick median as pivot.
+        . Put everything that's smaller than the pivot into a 'left' array and everything that's greater than the pivot into the 'right' array.
+        . Repeat the process for the individual 'left' and 'right' arrys till you have an array of length 1 which is sorted byt definiton.
+        . Repeatedly concatinate the left array, pivot and right array till one sorted array remains.
+        . [-6, 20, 8, -2, 4]
+            pivot = 4
+            leftArray = [-6, -2]
+            rightArray = [8, 20]
+            Repeat for the left and right sub arrays.
+                // Left sub array
+                    pivot = -2
+                    leftArray = [-6]
+                    rightArray = []
+                // Right sub array
+                    pivot = 20
+                    leftArray = [8]
+                    rightArray = []
+            concatinate
+                [-6, -2, 4, 8, 20]
+        .eg(
+            function quickSort(arr) {
+                if (arr.length < 2) {
+                    return arr;
+                }
+                let pivot = arr[arr.length - 1];
+                let left = [];
+                let right = [];
+                for (let i = 0; i < arr.length - 1; i++) {
+                    if (arr[i] < pivot) {
+                    left.push(arr[i]);
+                    } else {
+                    right.push(arr[i]);
+                    }
+                }
+                return [...quickSort(left), pivot, ...quickSort(right)];
+            }
+
+                const arr = [8, 20, -2, 4, -6];
+                console.log(quickSort(arr));
+
+        )
+
+TODO:. Merge Sort.
+        . Divide the array into sub arrays, each containing only one element (An array with one element is considered sorted);
+        . Repeatedly merge the sub arrays to produce new sorted sub arrays until there is only one sub array remaining. That will be the sorted array.
+        . [-6, 20, 8, -2, 4]
+                [-6, 20]    [8, -2, 4]
+                // check if the array length is one if not further divide the arrays.
+                [-6] [20]       [8]  [-2, 4]
+                [-6] [20]       [8]  [-2]  [4]
+            // step 1 completed.
+
+            [-6, 20]  [8]  [-2, 4]
+            [-6, 20]   [-2, 4, 8]
+            [-6, -2, 4, 8, 20]
+
+        . eg (
+            function mergetSort(arr) {
+                if (arr.length < 2) {
+                    return arr
+                } 
+                let mid= Math.floor(arr.length / 2)
+                const leftArray = arr.slice(0, mid)
+                const rightArray = arr.slice(mid)
+                return merge(mergetSort(leftArray), mergetSort(rightArray))
+                }
+
+                function merge(leftArray, rightArray) {
+                let sortedArray = []
+                while(leftArray.length && rightArray.length){
+                    if (leftArray[0] < rightArray[0]) {
+                    sortedArray.push(leftArray.shift())
+                    }else {
+                    sortedArray.push(rightArray.shift())
+                    }
+                }
+
+                return [...sortedArray, ...leftArray, ...rightArray]
+            }
+
+                const arr = [8, 20, -2, 4, -6]
+                console.log(mergetSort(arr));
+        )
+
+TODO:TODO:. Miscellaneous Problems
+
+TODO:. Cartesian product.
+        . In mathematics, spicifically set theory, the Cartesian product of two sets A and B,  
+          denoted AxB, is the set of all ordered pairs (a, b) where a is in A and b is in B.
+        . const A = [1, 2]
+          const B = [3, 4]
+          AxB = [[1, 3], [1, 4], [2, 3], [2, 4]]
+        . const C = [1, 2]
+          const D = [3, 4, 5]
+          CxD = [[1, 3]. [1,4], [1,5], [2,3], [2,4], [2,5]]
+
+        . Cartesian product idea.
+            . Traverse each array and pair each element in the array with each element in the second array.
+        .eg (
+            function cartesianProduct(arr1, arr2) {
+                let result = [];
+                for (let i = 0; i < arr1.length; i++) {
+                    for (let j = 0; j < arr2.length; j++) {
+                    result.push([arr1[i], arr2[j]])
+                    }
+                }
+                return result;
+            }
+
+                const arr1 = [1, 2];
+                const arr2 = ['a', 'b', 'c'];
+                console.log(cartesianProduct(arr1, arr2)); // [[1,3], [1,4], [1,5], [2, 3], [2, 4], [2, 5]]
+
+            // Big-O = O(mn)
+
+        )
+
+TODO:. Climbing staricase.
+
+        . n=1, climbingStairCase(1) = 1     | (1)
+          n=2, climbingStairCase(2) = 2     | (1,1) and (2)
+          n=3, climbingStairCase(3) = 3     | (1, 1, 1) (1, 2) and (2, 1)
+          n=4, climbingStairCase(4) = 5     | (1, 1, 1, 1) (1, 1, 2), (1, 2, 1), (2, 1, 1) and (2, 2)
+
+    . Climbing staricase idea.
+        . At any given time, you can climb either 1 step or 2 steps.
+        . if you have to climb to step 'n', we can only climb from step 'n-1' or 'n-2'.
+        . calculate the ways we can climb to 'n-1' and 'n-2' steps and add the two.
+        . climbingStairCase(n) = climbingStairCase(n-1) + climbingStairCase(n-2).
+
+    . eg(
+        function climbingStairCase(n) {
+            const noOfWays = [1, 2]
+            for (let i = 2; i <= n; i++) {
+                noOfWays[i] = noOfWays[i - 1] + noOfWays[i - 2]
+            }
+            return noOfWays[n - 1]
+        }
+
+            console.log(climbingStairCase(1)); // 1
+            console.log(climbingStairCase(2)); // 2
+            console.log(climbingStairCase(3)); // 3
+            console.log(climbingStairCase(4)); // 5
+            console.log(climbingStairCase(5)); // 8
+    )
+
+TODO:. Tower of Hanoi.
+        .eg(
+            function towerOfHanoi(n, fromRoad, toRod, usingRod) {
+                if (n === 1) {
+                    console.log(`Move disk 1 from ${fromRoad} to ${toRod}`);
+                    return;
+                }
+                towerOfHanoi(n - 1, fromRoad, usingRod, toRod);
+                console.log(`Move disk ${n} from ${fromRoad} to ${toRod}`);
+                towerOfHanoi(n-1, usingRod, toRod, fromRoad)
+            }
+
+            towerOfHanoi(3, "A", "C", "B");
+
+            // Move disk 1 from A to C
+            // Move disk 2 from A to B
+            // Move disk 1 from C to B
+            // Move disk 3 from A to C
+            // Move disk 1 from B to A
+            // Move disk 2 from B to C
+            // Move disk 1 from A to C
+
+        )
+
+TODO:TODO:. Algorithm design techniques.
+
+
+TODO:. Bruce force
+        . Simple and exhaustive technique that evaluates every possible outcome to find the best solution.
+        . eg: Linear search.
+TODO:. Greedy
+        . Choose the best option as the current time, without any consideration for the future.
+        . eg (Dijkstra's algorithm, Prim's algorithm and Kruskal's algorithm)
+TODO:. Divide and conquer
+        . Divide the problem into smaller sub-problems. 
+            Each sub-problem is the solved and the partial solutions are recombined to determine the overall solution.
+        . eg (Binary Search, Quick sort, Merge Sort and Tower of Hanoi)
+TODO:. Dynamic Programming
+        . Divide the problem into smaller sub-problems. 
+          Break it down into smaller but overlapping sub problems. 
+          store the result and reuse it for the same sub-problems.
+          This is called memorization and is a optimization technique that improves the time complexity of you algorithm.
+        . eg (Fibonacci numbers and climbing Stair Case)
+TODO:. Backtracking
+        . Generate all possible solutions. Check if the solution satisfies all the given constraints and only then you proceed with generatng subsequent. 
+          if the constraints are not satisfied, backtrack and go on a different path to find the solution.
+        .eg N-Queents problem
+
+        
+
+FIXME:FIXME:FIXME: Javascript Data Structures.
+
+        . a data Structure is a way to store and organize data so that it can be used efficiently.
+        . Almost every application we built involves data that is modelled in a certain way.
+        . To efficiently manage the data, you need data Structures.
+        . The differece between a function taking a few milliseconds vs few seconds or even minutes comes down to the selection of the right data structure.
+        . Data structure help you solve problems in a more efficiet way, both in terms of time and memory.
+        . Learning about data structure also help you gain a more profound understanding of things you're already aware of.
+        * . DOM - Tree data structure
+          . Browser back and forward - stack data structure.
+          . OS job scheduling - Queue data structure.
+
+
+TODO:. Array
+        . An array is a data structure that can hold a collection of values.
+        . Arrays can contain a mix of different data types. you can store strings, booleans numbers or even objects all in the same array.
+        . Arrays are resizable. you don't have to declare the size of an array before creating it .
+        * Array - Big-O time complexity
+            . insert / remove from end - O(1)   // constant.
+                    push, pop
+            . insert / remove from the beginning - O(n)  // linear
+                    shift, unshift
+                    because index has to be reset for every remaining element in the array.
+            . Access - O(1)   // constant.
+            . Search - O(n)  // linear
+            . concat, slice, splice // linear
+            . forEach, map, filter, reduce  // linear
+
+TODO:. Object
+        * object - Big-O time complexity.
+           . insert - O(1)  // constant
+           . remove - O(1)  // constant
+           . Access - O(1)  // constant
+           . Search - O(n)  // linear
+           . Object.Keys() - O(n)  // linear
+           . Object.values() - O(n)  // linear
+           . Object.entries() - O(n)  // linear
+
+TODO:. Set
+        . A set is a a data structure that can hold a collection of values. The values however must be unique.
+        . Set can contain a mix of different data types. You can store strings, booleans, numbers or even objects all in the same set.
+        . Sets do not maintain an insertion order.
+        . Sets are iterable. They can be used with a for of loop.
+        * Set vs Array.
+                . Arrays can contain duplicate values whereas sets cannot.
+                . insertion order is maintainer in arrays but it is not in case with sets.
+                . searching and deleting an element in the set is faster compared to arrays.
+        . eg(
+            const set = new Set([1, 2, 3]);
+            set.add(4) // add to set
+            console.log(set.has(3))  // true
+            set.delete(3) // deletes 3
+            set.clear() // clear the set
+        )
+
+TODO:. Map.
+        . A map is an unordered collection of key-value pairs. Both keys and values can be of any data type.
+        . To retreive a value, you can use the corresponding key.
+        . Maps are iterable. They can be used with a for of loop.
+        * Object vs Map.
+                . Objects are unordered whereas maps are ordered.
+                . keys in objec can only be string or symbol type whereas in maps, they can be of any type.
+                . An object has a prototype and may contain a few default keys which may collide with your own keys if you're not careful.
+                    A map on the other hand does not contain any keys by default.
+                . Objects are not iterable where as maps are iterable.
+                . The number of items in an object must be determined manually where as it is readily available with the size property in a map.
+                . Apart from storing data, you can attach functionality to an object whereas maps are restricted to just storing data.
+                . eg (
+                    const map = new Map([['a', 1], ['b', 2]])
+                    map.set('c', 3)
+                    console.log(map.has('a'))
+                    map.delete('c')
+                )
+
+TODO:. Stack.
+        . The stack data structure is a sequential collection of elements that follow the principle of Last In First Out (LIFO)
+        . The last element inseted into the stack is first element to be removed.
+        . A stack of plates. The last plate placed on top of the stack is also the first plate removed from the stack.
+        . A stack is an abstract data type. it is definded by its behaviour rather than being a mathematical model.
+        * The stack data structure supports two main operation.
+            . Push, which adds an element to the collection.
+            . Pop, which removes the most recently added element from the collection.
+        * Stack Usage.
+            . Browser history tracking.
+            . undo operation when typing.
+            . call stack in Javascript runtime.
+
+TODO:. Queue.
+        . The queue data structure is a sequential collection of elements that follows the principle of First In First Out (FIFO).
+        . The first element inserted into the queue is first element to be removed.
+        . A queue of people. People enter the queue at one end (rear/tail) and leave the queue from the other end (front/head).
+        . Queue is an abstract data type. it is defined bu its behaviour rather than being a mathematical model.
+        * The Queue data structure supports two main operations.
+            . Enqueue, which adds an element to the rear/tail of the collection.
+            . Dequeue, which removes an element from the front/head of the collection.
+        * Queue Usage.
+            . Printers.
+            . CPU task scheduling.
+            . callback queue in Javascript runtime.
+        * operations    
+            . enqueue(element) - add an element to the queue.
+            . dequeue() - remove the oldest element from the queue.
+            . peek() - get the value of the element at the front of the queue without removing it.
+            . isEmpty() - check if the queue is empty.
+            . size() - get the number of elements in the queue.
+            . print() - visualize the elements in the queue.
+            
+        .eg(
+            
+            1) class Queue {
+                constructor() {
+                    this.items = [];
+                }
+
+                enqueue(element) {
+                    this.items.push(element);
+                }
+
+                dequeue() {
+                    return this.items.shift();
+                }
+
+                isEmpty() {
+                    return this.items.length === 0;
+                }
+
+                peek() {
+                    if (!this.isEmpty()) {
+                    return this.items[0];
+                    }
+                    return null;
+                }
+
+                size() {
+                    return this.items.length;
+                }
+
+                print() {
+                    console.log(this.items.toString());
+                }
+            }
+
+            const queue = new Queue();
+            console.log(queue.isEmpty());  // true
+            queue.enqueue(10);  
+            queue.enqueue(20);
+            queue.enqueue(30);
+            console.log(queue.size());  // 3
+            queue.print();  // 10, 20, 30
+            console.log(queue.peek());  // 10
+
+
+        2) class Queue {
+            constructor() {
+                this.items = {};
+                this.rear = 0;
+                this.front = 0;
+            }
+
+            enqueue(element) {
+                this.items[this.rear] = element;
+                this.rear++;
+            }
+
+            dequeue() {
+                const item = this.items[this.front];
+                delete this.items[this.front];
+                this.front++;
+                return item;
+            }
+
+            isEmpty() {
+                return this.rear - this.front === 0;
+            }
+
+            peek() {
+                return this.items[this.front];
+            }
+
+            size() {
+                return this.rear - this.front;
+            }
+
+            print() {
+                console.log(this.items);
+            }
+            }
+
+            const queue = new Queue();  
+            console.log(queue.isEmpty());   // true
+            queue.enqueue(10);
+            queue.enqueue(20);
+            queue.enqueue(30);
+            console.log(queue.size());      // 3
+            queue.print();  // {0: 10, 1: 20, 2: 30}
+            console.log(queue.dequeue());  // 10
+            console.log(queue.peek());  // 20
+        )
+
+TODO:. Circular Queue.
+        . The size of the circular queue is fixed and a single block of memory is used as if the first element is connected to the last element.
+        . Also referred to as circular buffer or ring buffer and follows the FIFO principle.
+        . A circular queue will reuse the empty block created during the dequeue operation.
+        . when working with queues of fixed maximum size,a circular queue is a great implementation choice.
+        * The circular queue data structure supports two main operations
+            . enqueue, which adds an element to the rear/tail of the collection.
+            . dequeue, which removes an element from the front/head of the collection.
+        * Circular Queue Usage.
+            . Clock.
+            . Streaming data.
+            . Traffic lights
+        .eg(
+            class CircularQueue {
+                constructor(capacity) {
+                    this.items = new Array(capacity);
+                    this.capacity = capacity;
+                    this.currentLength = 0;
+                    this.rear = -1;
+                    this.front = -1;
+                }
+
+                isFull() {
+                    return this.currentLength === this.capacity;
+                }
+
+                isEmpty() {
+                    return this.currentLength === 0;
+                }
+
+                enqueue(element) {
+                    if (!this.isFull()) {
+                    this.rear = (this.rear + 1) % this.capacity;
+                    this.items[this.rear] = element;
+                    this.currentLength += 1;
+                    if (this.front === -1) {
+                        this.front = this.rear;
+                    }
+                    }
+                }
+
+                dequeue() {
+                    if (this.isEmpty()) {
+                    return null;
+                    }
+                    const item = this.items[this.front];
+                    this.items[this.front] = null;
+                    this.front = (this.front + 1) % this.capacity;
+                    this.currentLength -= 1;
+                    if (this.isEmpty()) {
+                    this.front = -1;
+                    this.rear = -1;
+                    }
+                    return item;
+                }
+
+                peek() {
+                    if (!this.isEmpty()) {
+                    return this.items[this.front];
+                    }
+                    return null;
+                }
+
+                print() {
+                    if (this.isEmpty()) {
+                    console.log("Queue is empty");
+                    } else {
+                    let i;
+                    let str = "";
+                    for (i = this.front; i !== this.rear; i = (i + 1) % this.capacity) {
+                        str += this.items[i] + " ";
+                    }
+                    str += this.items[i];
+                    console.log(str);
+                    }
+                }
+            }
+
+
+                const queue = new CircularQueue(5);
+                console.log(queue.isEmpty()); // true
+
+                queue.enqueue(10)
+                queue.enqueue(20)
+                queue.enqueue(30)
+                queue.enqueue(40)
+                queue.enqueue(50)
+
+                console.log(queue.isFull()); // true
+
+                console.log(queue.dequeue()); // 10
+                queue.print() // 20 30 40 50 
+                queue.enqueue(60)
+                queue.print() // 20 30 40 50 60
+        )
+        
+
+TODO:. Linked List.
+        . A linked list is a linear data structure that includes a series of connected nodes.
+        . Each node consists of a date value and a pointer that points to the next node.
+        . The list elements can be easily inserted or removed without reallocating or reorganization of the entire structure.
+        . Random access of elements is not feasible and accessing an element has linear time complexity.
+        * The linked list data structure supports three main operations.
+            . Insertion - to add an element at the beginning, end or at a given index in the list.
+            . Deletion - to remove an item given its index or value.
+            . Search - to find an element given its value.
+        * Linked List usage.
+            . All application of both stacks and queues are application of linked lists.
+            . Image viewer. 
+        .eg (
+            class Node {
+            constructor(value) {
+                this.value = value;
+                this.next = null;
+            }
+            }
+
+            class LinkedList {
+            constructor() {
+                this.head = null;
+                this.tail = null;
+                this.size = 0;
+            }
+
+            isEmpty() {
+                return this.size === 0;
+            }
+
+            getSize() {
+                return this.size;
+            }
+
+            prepend(value) {
+                const node = new Node(value);
+                if (this.isEmpty()) {
+                this.head = node;
+                } else {
+                node.next = this.head;
+                this.head = node;
+                }
+                this.size++;
+            } // O(1)
+
+            append(value) {
+                const node = new Node(value);
+                if (this.isEmpty()) {
+                this.head = node;
+                } else {
+                let prev = this.head;
+                while (prev.next) {
+                    prev = prev.next;
+                }
+                prev.next = node;
+                }
+                this.size++;
+            } // O(n)
+
+            insert(value, index) {
+                if (index < 0 || index > this.size) {
+                return;
+                }
+                if (index === 0) {
+                this.prepend(value);
+                } else {
+                const node = new Node(value);
+                let prev = this.head;
+                for (let i = 0; i < index - 1; i++) {
+                    prev = prev.next;
+                }
+                node.next = prev.next;
+                prev.next = node;
+                this.size++;
+                }
+            }
+
+            removeFrom(index) {
+                if (index < 0 || index >= this.size) {
+                return null;
+                }
+                let removedNode;
+                if (index === 0) {
+                removedNode = this.head;
+                this.head = this.head.next;
+                } else {
+                let prev = this.head;
+                for (let i = 0; i < index - 1; i++) {
+                    prev = prev.next;
+                }
+                removedNode = prev.next;
+                prev.ext = removedNode.next;
+                }
+                this.size--;
+                return removedNode.value;
+            }
+
+            removeValue(value) {
+                if (this.isEmpty()) {
+                return null;
+                }
+                if (this.head.value === value) {
+                this.head = this.head.next;
+                this.size--;
+                return value;
+                } else {
+                let prev = this.head;
+                while (prev.next && prev.next.value != value) {
+                    prev = prev.next;
+                }
+
+                if (prev.next) {
+                    const removedNode = prev.next;
+                    performance.next = removedNode.next;
+                    this.size--;
+                    return value;
+                }
+                return null;
+                }
+            }
+
+            search(value) {
+                if (this.isEmpty()) {
+                return -1;
+                }
+                let i = 0;
+                let curr = this.head;
+                while (curr) {
+                if (curr.value === value) {
+                    return i;
+                }
+                curr = curr.next;
+                i++;
+                }
+                return -1;
+            }
+
+            reverse() {
+                let prev = null;
+                let curr = this.head;
+                while (curr) {
+                let next = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = next;
+                }
+                this.head = prev;
+            }
+
+            print() {
+                if (this.isEmpty()) {
+                console.log("List is empty");
+                } else {
+                let curr = this.head;
+                let listValues = "";
+                while (curr) {
+                    listValues += ` ${curr.value}`;
+                    curr = curr.next;
+                }
+                console.log(listValues);
+                }
+            }
+        }
+
+            const list = new LinkedList();
+            console.log("List is empty? ", list.isEmpty()); // true
+            console.log("List size", list.getSize()); // 0
+            list.print(); // list is empty
+            list.insert(10, 0);
+            list.print(); // 10
+            list.insert(20, 0);
+            list.print(); // 20 10
+            list.insert(30, 1);
+            list.print(); // 20 30 10
+            console.log(list.getSize());  //3
+            console.log(list.removeFrom(10)); // null
+            console.log(list.removeFrom(0)); // 20
+            console.log(list.removeValue(30));  // 30
+            list.insert(100, 0);
+            list.print();  // 100 10
+            console.log(list.search(10));  // 1
+            list.reverse();
+            list.print();  // 10 100
+        )
+
+
+        . with tail eg {
+            class Node {
+            constructor(value) {
+                this.value = value;
+                this.next = null;
+            }
+            }
+
+            class LinkedList {
+            constructor() {
+                this.head = null;
+                this.tail = null;
+                this.size = 0;
+            }
+
+            isEmpty() {
+                return this.size === 0;
+            }
+
+            getSize() {
+                return this.size;
+            }
+
+            prepend(value) {
+                const node = new Node(value);
+                if (this.isEmpty()) {
+                this.head = node;
+                this.tail = node;
+                } else {
+                node.next = this.head;
+                this.head = node;
+                }
+                this.size++;
+            }
+
+            append(value) {
+                const node = new Node(value);
+                if (this.isEmpty()) {
+                this.head = node;
+                this.tail = node;
+                } else {
+                this.tail.next = node;
+                this.tail = node;
+                }
+                this.size++;
+            }
+
+            removeFromFront() {
+                if (this.isEmpty()) {
+                return null;
+                }
+                const value = this.head.value;
+                this.head = this.head.next;
+                this.size--;
+                return value;
+            }
+
+            removeFromEnd() {
+                if (this.isEmpty()) {
+                return null;
+                }
+                const value = this.tail.value;
+                if (this.size === 1) {
+                this.head = null;
+                this.tail = null;
+                } else {
+                let prev = this.head;
+                while (prev.next !== this.tail) {
+                    prev = prev.next;
+                }
+                prev.next = null;
+                this.tail = prev;
+                }
+                this.size--;
+                return value;
+            }
+
+            print() {
+                if (this.isEmpty()) {
+                console.log("List is empty");
+                } else {
+                let curr = this.head;
+                let listValues = "";
+                while (curr) {
+                    listValues += ` ${curr.value}`;
+                    curr = curr.next;
+                }
+                console.log(listValues);
+                }
+            }
+        }
+
+            const list = new LinkedList()
+            console.log('List is empty', list.isEmpty());  // true
+            console.log('List size', list.getSize()); // 0
+            list.print()  // list is empty
+            list.append(1)
+            list.append(2)
+            list.append(3)
+            list.prepend(0)
+            list.print()  // 0 1 2 3 
+            console.log('List size', list.getSize());  // List size 4
+            list.removeFromFront()
+            list.removeFromEnd()
+            list.print()  // 1 2
+        }
+
+TODO:. Linked List Stack and queue
+        .    class Node {
+            constructor(value) {
+                this.value = value;
+                this.next = null;
+            }
+            }
+
+            class LinkedList {
+            constructor() {
+                this.head = null;
+                this.tail = null;
+                this.size = 0;
+            }
+
+            isEmpty() {
+                return this.size === 0;
+            }
+
+            getSize() {
+                return this.size;
+            }
+
+            prepend(value) {
+                const node = new Node(value);
+                if (this.isEmpty()) {
+                this.head = node;
+                this.tail = node;
+                } else {
+                node.next = this.head;
+                this.head = node;
+                }
+                this.size++;
+            }
+
+            append(value) {
+                const node = new Node(value);
+                if (this.isEmpty()) {
+                this.head = node;
+                this.tail = node;
+                } else {
+                this.tail.next = node;
+                this.tail = node;
+                }
+                this.size++;
+            }
+
+            removeFromFront() {
+                if (this.isEmpty()) {
+                return null;
+                }
+                const value = this.head.value;
+                this.head = this.head.next;
+                this.size--;
+                return value;
+            }
+
+            removeFromEnd() {
+                if (this.isEmpty()) {
+                return null;
+                }
+                const value = this.tail.value;
+                if (this.size === 1) {
+                this.head = null;
+                this.tail = null;
+                } else {
+                let prev = this.head;
+                while (prev.next !== this.tail) {
+                    prev = prev.next;
+                }
+                prev.next = null;
+                this.tail = prev;
+                }
+                this.size--;
+                return value;
+            }
+
+            print() {
+                if (this.isEmpty()) {
+                console.log("List is empty");
+                } else {
+                let curr = this.head;
+                let listValues = "";
+                while (curr) {
+                    listValues += ` ${curr.value}`;
+                    curr = curr.next;
+                }
+                console.log(listValues);
+                }
+            }
+        }
+
+    TODO:. Stack
+
+        class LinkedListStack {
+            constructor() {
+                this.list = new LinkedList();
+            }
+
+            push(value) {
+                this.list.prepend(value);
+            }
+
+            pop() {
+                return this.list.removeFromFront();
+            }
+
+            peek() {
+                return this.list.head.value;
+            }
+
+            isEmpty() {
+            return this.list.isEmpty();
+            }
+
+            getSize() {
+            return this.list.getSize();
+            }
+
+            print() {
+                return this.list.print();
+            }
+        }
+
+
+            const stack = new LinkedListStack()
+            console.log(stack.isEmpty()); // true
+            stack.push(20)
+            stack.push(10)
+            stack.push(30)
+            console.log(stack.getSize()); // 3
+            stack.print() // 30 10 20
+            console.log(stack.pop()); // 30
+            console.log(stack.peek()); // 10
+
+    TODO:. Queue
+
+        class LinkedListQueue {
+        constructor() {
+            this.list = new LinkedList();
+        }
+
+        enqueue(value) {
+            this.list.append(value)
+        }
+
+        dequeue() {
+            return this.list.removeFromFront()
+        }
+
+        peek() {
+            return this.list.head.value;
+        }
+
+        isEmpty() {
+            return this.list.isEmpty();
+        }
+
+        getSize() {
+            return this.list.getSize();
+        }
+
+        print() {
+            return this.list.print();
+        }
+    }
+
+        const queue = new LinkedListQueue()
+        console.log(queue.isEmpty());  // true
+        queue.enqueue(10)
+        queue.enqueue(20)
+        queue.enqueue(30)
+        console.log(queue.getSize()); // 3
+        queue.print() // 10 20 30
+        console.log(queue.dequeue());  // 20 30
+        queue.print() // 20
+
+        console.log(queue.peek());
+
+
+
+
+TODO:TODO:. Hash Table
+
+        . A hash table, also known as hash map, is a data structure that is used to store key-value pairs.
+        . Given a key, you can associate a value with that key for very fast lookup.
+        . Javascript't object is a special implementation of the hash table data structurel
+            However, Object class adds its own keys. Keys that you input may conflict and overrite the inherited default properties.
+        . Maps which were introduced in 2015 allows you to store key-value pairs.
+        . We store the key value pairs ina fix sized array.
+        . Arrays have a numeric index.
+        . A hashing function accepts the string key, converts it into a hash code using a definded logic and then maps it into a numeric index that is within the bounds of the array.
+        . using the index, store the values.
+        . The same hashing function is reused to retrieve the value given a key.
+        * The hash table supports 3 Main operations.
+            . Set -  to store a key-value pair.
+            . Get -  to retrieve a value given its key.
+            . Remove -  to delete a key value pair.
+        * Hash Table usage
+            . Hash tables are typically implemented where constant time lookup and insertion are required.
+            . Database indexing
+            . Caches
+        . eg (
+            class HashTable {
+                constructor(size) {
+                    this.table = new Array(size);
+                    this.size = size;
+                }
+
+                hash(key) {
+                    let total = 0;
+                    for (let i = 0; i < key.length; i++) {
+                    total += key.charCodeAt(i);
+                    }
+                    return total % this.size;
+                }
+
+                set(key, value) {
+                    const index = this.hash(key);
+                    const bucket = this.table[index];
+                    if (!bucket) {
+                    this.table[index] = [[key, value]];
+                    } else {
+                    const sameKeyItem = bucket.find((item) => item[0] == key);
+                    if (sameKeyItem) {
+                        sameKeyItem[1] = value;
+                    } else {
+                        bucket.push([key, value]);
+                    }
+                    }
+                }
+
+                get(key) {
+                    const index = this.hash(key);
+                    const bucket = this.table[index];
+                    if (bucket) {
+                    const sameKeyItem = bucket.find((item) => item[0] == key);
+                    if (sameKeyItem) {
+                        return sameKeyItem[1];
+                    }
+                    }
+                    return undefined;
+                }
+
+                remove(key) {
+                    const index = this.hash(key);
+                    const bucket = this.table[index];
+                    if (bucket) {
+                    const sameKeyItem = bucket.find((item) => item[0] === key);
+                    if (sameKeyItem) {
+                        bucket.splice(bucket.indexOf(sameKeyItem), 1);
+                    }
+                    }
+                }
+
+                display() {
+                    for (let i = 0; i < this.table.length; i++) {
+                    if (this.table[i]) {
+                        console.log(i, this.table[i]);
+                    }
+                    }
+                }
+            }
+
+                const table = new HashTable(50);
+                table.set("name", "Bruce");
+                table.set("age", 25);
+                table.display(); // 1 > ['age', 25 ]
+                console.log(table.get("name"));  // Bruce
+                table.remove("name");
+                table.display();
+
+        )
+
+TODO:. charCodeAt() is a string method that returns the Unicode value (UTF-16 code unit) of the character at a specified index in a string.
+        . syntax (
+            string.charCodeAt(index) // index is the position of the character in the string(0 based)
+        )
+        . eg {
+            let text = "ABC";
+            console.log(text.charCodeAt(0))  // 65
+            console.log(text.charCodeAt(1))  // 66
+            console.log(text.charCodeAt(2))  // 67
+
+            let word = "JS";
+            console.log(word.charCodeAt(5));  // NaN
+        }
+
+
+
+TODO:TODO:. Tree.
+            . A tree is a hierarchical data structure that consists of nodes connected by edges.
+            . A tree is a non-linear data structure, compared to arrays, linked lists, stacks and queues which are linear data structure.
+            . In linear data structure, the time required to search is proportional to the size of the data set.
+            . Trees however, owning to the nonlinear nature allow quicker and easier access to the data.
+            . A tree will not contain any loops or cycles.
+            * Tree visualization.
+                                A
+                            / |  \
+                            B   C    D
+                        /  \
+                        E      F
+            * Tree Usage.
+                . File system for directory structure.
+                . A family tree.
+                . An organization tree.
+                . DOM.
+                . Chat bots.
+                . Abstract syntax trees.
+            . E, F, C and D are leaf nodes.
+            . (B, C, D) and (E, F) are siblings.
+            . A is an ancestor of E.
+            . Path(A,E) is A-B-Each.
+            . Distance(A, E) is 2.
+            . Degree(B) is 2.
+            . Degree of tree is 3
+            . Depth of E is 2.
+            . Height of B is 1.
+            . Height of tree is 2.
+
+
+TODO:. Binary Tree.
+        . A binary tree is a tree data structure in which each node has atmost two children.
+        . They are referred to as left child and right child.
+
+TODO:. Binary Search Tree.  
+        . A binary search tree is a binary that has these properties.
+            . The value of each left node must be smaller than the parent node.
+            . The value of each righ node must be greater than the parent node.
+        * Binary search Tree visualization.
+                        10
+                      /    \
+                    5       15
+                  /   \
+                 3      7
+        * Binary Search Tree Operations.
+            . Insertion - To add anode to the tree.
+            . Search - To find a node given its value.
+            . DFS & BFS - To visit all nodes in the tree.
+            . Deletion - To remove a node given its value. 
+        * Binary Search Tree Usage.
+            . Searching.
+            . Sorting.
+            . To implement abstract data types such as lookup tables and priority queues.   
+
+TODO:. Tree Traversal.
+        . Visiting every node in the tree.
+        * A hierarchical data structure like a tree can be traversed in differet ways.
+            1. Depth First Search(DFS)
+            2. Breadth First Search(BFS)
+
+TODO:. Depth First Search(DFS)
+        . THe DFS algorithm starts at the root node and explores as far as possible along each branch before backtracking.
+        . Visit the root node, visit all the nodes in the left subtree and visit all the nodes in the right subtree.
+        * Depending on the order in which we do this, there can be three types of DFS traversals.
+            . Preorder.
+            . Inorder.
+            . Postorder. 
+        * Preorder Traversal.
+            . Read the data of the node.
+            . visit the left subree.
+            . visit the right subtree.
+        * Inorder Traversal.
+            . Visit the left subree.
+            . Read the data of the node.
+            . visit the right subree.
+        * Postorder Traversal.
+            . Visit the left subtree.
+            . Visit the right subtree.
+            . Read the data of the node.
+
+TODO:. Breadth First Search(BFS)
+        . Create a queue.
+        . Enqueue the root node.
+        * As long as the node exists in the queue.
+            . Dequeue the node from the front.
+            . Read the node's value.
+            . Enqueue the node's left child if it exists.
+            . Enqueue the node's right child if it exists.
+
+. eg(
+
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+class BinarySearchTree {
+  constructor() {
+    this.root = null;
+  }
+
+  isEmpty() {
+    return this.root === null;
+  }
+
+  insert(value) {
+    const newNode = new Node(value);
+    if (this.isEmpty()) {
+      this.root = newNode;
+    } else {
+      this.insertNode(this.root, newNode);
+    }
+  }
+
+  insertNode(root, newNode) {
+    if (newNode.value < root.value) {
+      if (root.left === null) {
+        root.left = newNode;
+      } else {
+        this.insertNode(root.left, newNode);
+      }
+    } else {
+      if (root.right === null) {
+        root.right = newNode;
+      } else {
+        this.insertNode(root.right, newNode);
+      }
+    }
+  }
+
+  search(root, value) {
+    if (!root) {
+      return false;
+    } else {
+      if (root.value === value) {
+        return true;
+      } else if (value < root.value) {
+        return this.search(root.left, value);
+      } else {
+        return this.search(root.right, value);
+      }
+    }
+  }
+
+  preOrder(root) {
+    if (root) {
+      console.log(root.value);
+      this.preOrder(root.left);
+      this.preOrder(root.right);
+    }
+  }
+
+  inOrder(root) {
+    if (root) {
+      this.inOrder(root.left);
+      console.log(root.value);
+      this.inOrder(root.right);
+    }
+  }
+
+  postOrder(root) {
+    if (root) {
+      this.postOrder(root.left);
+      this.postOrder(root.right);
+      console.log(root.value);
+    }
+  }
+
+  levelOrder() {
+    const queue = [];
+    queue.push(this.root);
+    while (queue.length) {
+      let curr = queue.shift();
+      console.log(curr.value);
+      if (curr.left) {
+        queue.push(curr.left);
+      }
+
+      if (curr.right) {
+        queue.push(curr.right);
+      }
+    }
+  }
+
+  min(root) {
+    if (!root.left) {
+      return root.value;
+    } else {
+      return this.min(root.left);
+    }
+  }
+
+  max(root) {
+    if (!root.right) {
+      return root.value;
+    } else {
+      return this.max(root.right);
+    }
+  }
+
+  delete(value) {
+    this.root = this.deleteNode(this.root, value);
+  }
+
+  deleteNode(root, value) {
+    if (root === null) {
+      return root;
+    }
+    if (value < root.value) {
+      root.left = this.deleteNode(root.left, value);
+    } else if (value > root.value) {
+      root.right = this.deleteNode(root.right, value);
+    } else {
+      if (!root.left && !root.right) {
+        return null;
+      }
+      if (!root.left) {
+        return root.right;
+      } else if (!root.right) {
+        return root.left;
+      }
+      root.value = this.min(root.right);
+      root.right = this.deleteNode(root.right, root.value);
+    }
+    return root;
+  }
+}
+
+const bst = new BinarySearchTree();
+console.log(bst.isEmpty()); // true
+
+bst.insert(10);
+bst.insert(5);
+bst.insert(15);
+bst.insert(3);
+
+console.log(bst.search(bst.root, 10)); // true
+console.log(bst.search(bst.root, 5));  // true
+console.log(bst.search(bst.root, 15)); // true
+console.log(bst.search(bst.root, 20)); // false
+
+bst.preOrder(bst.root); // 10 5 3 15
+bst.inOrder(bst.root);  // 3 5 10 15
+bst.postOrder(bst.root);  // 3 5 15 10
+bst.levelOrder();  // 10 5 15 3 
+console.log(bst.min(bst.root));  // 3
+console.log(bst.max(bst.root));  // 15
+
+bst.delete(3)
+bst.levelOrder()  // 10 5 15
+
+)
