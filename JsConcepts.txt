@@ -1,0 +1,185 @@
+. Everything in js happens inside an Execution context.
+. Execution context has two components.
+    . Memory component
+        . This is the place where all the variables and functions are strored as key value pairs.
+        . also  known as variable enviornment.
+    . Code component.
+        . This is the place where the code is executed one line at a time.
+        . also known as thread of Execution. 
+. js is a synchronous single threaded language.
+. when we run a js program an Execution context is created.
+. js runs inside the Execution context through 2 phases.
+    . Memory allocation phase.
+        . in this phase js will allocate memory to all the variables and functions.
+        . the value of the variables will be a value undefined, and for functions is stores all the code of the function.
+    . Code Execution Phase.
+        . in this phase the value of the variable will be changed to the defined value.
+        . whenever a new function is invoked a new Execution context is created inside the global Execution context.
+        . after the whole function is executed the Execution context of the function will be deleted.
+. once the whole program is executed and the program is finished the global Execution context will be deleted.
+. Hoisting in js is that we can access variables and functions even before initialized it without any error.
+. Call stack is a stack where all the Execution context are kept.
+. when we run a js program the js engine will create a window object.
+. window is a global object which is created along with the global Execution context. whenever any js program is run a global object and a global Execution context is created.
+. scope means where you can access a specific variable or a function.
+. whenever a Execution context is created a Lexical enviornment is also created .
+. Lexical enviornment is the local memory along with Lexical enviornment of its parent.
+. Scope chain is the chain when js looks up variable by moving from innter scopes to outer scopes.
+. let and const declarations are Hoisted. but compared to var they are stored in a different memory space than global.
+. Temporal dead zone is the time since when the let variable was hoisted and till it is initialized with some value.
+. we cannot access a variable that is in the Temporal dead zone.
+. const behave similar to let but it is even more strict than let.
+. with let we can declare a variable and initialize it later. but we cannot do that with const. const must be initialized some value when it is declared.
+. let and const are block scoped.
+. A closure is the combination of function and the Lexical enviornment within which that function was declared. a closure is a function that remembers and can access variables from its outer scope.
+. A closure is the combination of a function bundled together with reference to its surrounding state (the lexical enviornment)
+. closures are created every time a function is created, at function creation time.
+* Advantages of closure.
+    . Data privacy.
+        . enables creation of private variables and methods that cannot be accessed or modified from outside the function's scope.
+. Garbage Collection in js is an automatic memory management process that reclaims memory occupied by objects and variable that are no longer in use by the program.
+. function statement and function declaration is a normal way of creating a function.
+. function expression is a function that is defined as part of an expression, typically by assigning it to a variable or passing it as an argument to another function.
+. Anonymous is a function without a name. use it to like assign to a variable.
+. First Class functions are functions that is treated like any other value(such as a number, string, or object).
+* web API's are part of the browser not part of js.
+    . setTimout()
+    . DOM API's
+    . fetch()
+    . console
+. A function that is passed into another function as argument to be executed at a later time is called Callback function.
+. js has one call stack and it can only do one thing at a time. The call stack is present at the js engine.
+. the call stack will execute the code inside it immediatly.
+. when we pass a Callback function into a timer function or event listeners it registers the Callback in the web API's enviornment and timer will start or wait for the event to occur. and the rest of the code is executed until the timer run out or the event happens.
+. when the timer expires or when the event ocuurs the Callback will be put into the callback queue.
+. The event loops job is to check the callback and put the functions in the callback queue into the call stack.
+. The event loops continuously check whether there is something in the callback queue and if there is something it push that into the call stack and the call stack quickly executes it.
+. callback queue is useful when many event or timer is present.
+. just like the callback queue there is another queue called microtask queue.
+. microtask queue is similar to callback queue but it has higher priority.
+. microtask queue stores all the callback functions that comes through promises.
+. js use JIT(Just in time) combilation. js engine can use an interpretter along with a combiler.
+. A function that takes another function as argument or return a function as its result is called Higher order function.
+. Callback Hell is a phenomenon where a callback is called inside another callback. nesting of multiple callbacks inside a function.
+. Promise is a placeholder for a value that will be available in the future. a placeholder which will be fillter later with a value.
+. A Promise is an object representing the eventual completion or failure of an asynchronous operation.
+. To create a promise we use the Promise constructor. The Promise constructor will take a function and the function has two parameters.
+. asyn is a keyword that is used with a function to make a asynchronous function
+. async function always return a promise.
+. either we return a promise from the function and if we don't return a promise if we return a value then the function will automtically wrap the value inside a promise and return a promise.
+. asyn and await are used to handle promises. 
+. await is a keyword that can only be used inside async function. it should be used in front of a promise.
+. the await keyword will wait for the promise to resolve and only then goes to the next line to execute. 
+. while executing a function line by line inside the call stack when it come across a await key the functions execution will be suspended on that line, 
+        it will be removed from the call stack. it will not block the main thread.
+        . after suspending it will wait for the promise to resolved, after resolved it will again come to the call stack and start executing from the place it got suspended.
+. The fetch method is a promise and when it resolves it  will return an response object.
+. The response object has a body which is a readableStream. to comvert the readableStream to json we use the .json() method.
+. The json method is a promise. and when this promise resolves it will return the result.
+. The Try catch method is used to handle errors.
+* Promise API's
+. Promise.all() is a promise API used to make parallel API calls, multiple API calls together.
+        . Promise.all takes an array of promises as input.
+        . suppose there is an array of three promises p1, p2, p3 it will make 3 parallel API calls and get the result.
+        * suppose p1 takes 3s p2 takes 1s and p3 takes 2s to resolve 
+                . if all of them are success the output of promise.all will be an array with the result of all the promises val1 from p1 val2 from p2 val3 from p3.
+                    . the total time it takes will be 3s because it waits for all the promises to finish.
+                . if any of the promises gets rejected, lets say after 1s p2 got rejected as soon as it gets rejected promise.all will throw an error and it will be a failure. 
+                    . after 1s its output will be error because it immediatly throw as soon as one gets rejected.
+                    . it will not wait for other promises.
+. Promise.allSettled() is as same as promise.all 
+        . if all of them are success the output of promise.all will be an array with the result of all the promises val1, val2, val3.
+        . if any of the promises gets rejected, lets say after 1s p2 got rejected. it will wait for all the promises to resolve.
+        . after 3s the output of promise.allSettled will be an array of val1, error2, val3.
+        . the output will allways be an array. 
+. Promise.race() is a Promise API also takes an array of promises.
+        . as the name suggests it is a race the promise which will be resolved first will be the output.
+        . if the first promise is a success
+            . p1 3s, p2 1s, p3 2s, as soon as first promise is resolved that is after 1s it will give the result val2 which is from p2.
+            . it will give the value of the first settled promise. if its is failure failure or success success.
+        . if the first promise is rejected.
+            . let's say after 1s p2 fails. an error will be thrown from the failed promise.
+            . the error of p2 will be returned.
+            . it will not wait for other promise to be resolved.
+. Promise.any() is a Promise API also takes an array of promises.
+        . it is similar to race. but the only difference it will will wait for any one of the promise to be a success.
+        . even if there is failure it will return the value of the success.
+        . it will wait for first success.
+        . if p1 gets rejected Promise.any will wait for the other promises success and suppose if p3 gets resolved it will return the value from p3.
+        . if all promise is rejected the result will be an aggregated error. it will be an array of all the three errors.
+. eg (
+    const p1 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("Promise 1 Success");
+    }, 3000);
+    });
+
+    const p2 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        reject("Promise 2 fail");
+    }, 1000);
+    });
+
+    const p3 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("Promise 3 Success");
+    }, 2000);
+    });
+
+
+
+    Promise.all([p1, p2, p3])
+    .then((res) => console.log(res))
+    .catch((err) => {
+        console.error(err);
+    }); // Promise 2 fail
+
+
+    Promise.allSettled([p1, p2, p3])
+    .then((res) => console.log(res))
+    .catch((err) => {
+        console.error(err);
+    }); // [
+        { status: 'fullfilled', value: 'Promise 1 success'},
+        { status: 'rejected', reason: 'Promise 2 fail'},
+        { status: 'fullfilled', value: 'Promise 3 success'},
+    ]
+
+
+     Promise.race([p1, p2, p3])
+    .then((res) => console.log(res))
+    .catch((err) => {
+        console.error(err);
+    }); // Promise 2 Fail
+
+
+    Promise.any([p1, p2, p3])
+    .then((res) => console.log(res))
+    .catch((err) => {
+        console.error(err);
+        
+    }); // Promise 3 Fail
+
+)
+
+. this keyword in global space points to the window object.
+. this keyword inside a function point to the window object if it is not in strict mode if it is the value will be undefined.
+. If the value of the this keyword is undefined or null, this keyword will be replaced with global object only in non strict mode.
+. this keyword value depends on how this is called.
+. cann, apply and bind methods in js is used to control the this value inside a function, allowing explicit context setting and method borrowing between objects.
+* The call() method immediatly invokes a function with a specified this value and argument provided individually.
+    . the first argument we pass into the callmethod will be the reference to the this keyword and the rest will be the arguments to the functions parameters,
+    .  printFullName.call(name2, 'New York'); name2 is reference to this and New York is argument to the parameter. 
+* The apply() method is very similar to call(), but it accepts the arguments as an array (or an array- line object)
+    . printFullName.apply(name2, ["New York", 'Madrid']); name2 is reference to this and the array is the arguments for the rest of the parameter.
+* The bind() method creates a new function with the this keyword permanently set to a specified value without immediatly executing the original function.
+    . let printMyName = printFullName.bind(name2, "Mumbai", "Maharashtra"); it will return a new function with name2 as this  which we can be called later.
+        printMyName()
+
+. this keyword inside an arrow function don't provide their own binding (it retails the this calue of the enclosing lexical context).
+. this keyword inside an arrow function is lexically scoped, meaning it inherits its value from the surrounding code where the function is definded, bot where it is called.
+. this keyword inside an arrow function dont't have its own this binding so it acts the arrow function was never there.
+. this keyword inside the DOM refers to the specific DOM element that receives the event.
+    . <button id="btn" onclick="console.log(this)">Hello</button> this will be the element itself.
+. this keyword in class refers to the current instance of the class.
+. 
