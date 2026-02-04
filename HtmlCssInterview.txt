@@ -1,0 +1,97 @@
+.!DOCTYPE is a doctype or document type declaration is an instruction that tells the web browwser about the markup language in whih the current page is written.
+    .<!DOCTYPE html>
+. To redirect to a specific section of a page in HTML, use anchor tags with id attributes.
+. Are <b> and <strong> tags same? if not, then why?
+    . No, <b> or bold tag is a physical tag. it makes the text bold.
+          <strong> tag is a logical tag which used for formatting html text.
+. What are the two types of web storage in HTML5.
+    . Session storage.
+        . it stores data of the current session only, it clears automatically when the browser closes.
+    . local storage.
+        . localStorage object stores the data with no expiration date.
+. What are semantic elements in HTML?
+    . semantic elements are those that clearly describes their meaning in a human and machine readable way.
+    . Exmple of non-semantic elements: <div> and <span> - Tells nothing about its content.
+    . Exmple of semantic elements: <img>, <table> and article - clearly defines its content.
+. What are the html tags used to display a table.
+    . There are four major tags used.
+    . <caption> use to define the caption of the table.
+    . <th> use to give the header to the table. 
+    . <tr> use to define the row of the table.
+    . <td> use to give the data inside the talbe row.
+. What is the purpose of the <meta> tag in HTML?.
+    . it is defined inside the head tag.
+    . <meta charset = "utf-8"> // it's about character encoding.
+        . utf-8 is recommended character encoding because it support all english letters, special symbols, emojis, non english languages.
+    . <meta name="description" content="short summary"> // it provides a short summary of the pag's content
+    . <meta name="viewport" content="width=device-width, initial-scale=1"> // controls how webpages is displayed on different screen sizes.
+. What is the use of alt attributes in images.
+    . the alt attribute is used to specify the alternate text for an image. 
+    . it is useful when the image is not displayes.
+    . it is used to give alternative information for an image.
+. What is an image map.
+    . image map facilitates you to link many different web pages using a single image.
+. What is the use of a span tag? give one example.
+    . The span tag is used for following things:
+        . For adding color on text.
+        . For adding background on text.
+        . Highlight any color text.
+. what is the use of an iframe tag.
+    . an iframe tag is used to display a web page within a web page.
+. what is the difference between an absolute and relative URL.
+    . A absolute URL includes the full web address, the protocol(such as http of https) and the domain name (sun as www.example.com)
+    . A relative URL, on the other hand, specifies the location of a resource to the current web page.
+. what is the difference between the link tag <link> and anchor tag <a>?
+    . The anchor tag <a> is used to create a hyperlink to another webpage or to a certain part of the webpage. and thesea are clickable
+    . link tag <link> defines a link between a document and an external resource. these links are not clickable.
+. what is the difference between <figure> tage and <img> tag?
+    . The <figure> tag acts as a semantic container for figures like images or diagrams.
+    . The <img> tag is used to embed images directly into a webpage.
+. Which type of css holds the highest priority.
+    . Inline css has the highest priority.
+    . Internal css has the second priority.
+    . External css have the least priority.
+. What does the 'a' in rgba mean?
+    . a stands for Alpha which specifies the transparency of the elements. 
+    . its value is between 0.0 to 1.0
+    . 0.0 represent fully transparent and 1.0 represents not transparent.
+. Define z-index.
+    . z-index is used to specify the stack order of elements that overlaps each other.
+    . takes the values auto number initial and inherit.
+. what do you understand by the universal selector?
+    . A universal selector is a selector that matches any element type's name instead of selecting elements of a particular type.
+. what are the different css link states.
+    . There are four states of links given below:
+        . a:link: This is a normal, unvisited link.
+        . a:visited: This is a link visited by a user at least once.
+        . a:hover: This is a link when mouse hovers over it.
+        . a:active: This is a link that is just clicked.
+. can we add an image as a list item marker.
+    . Yes, to add an image as the list item marker in a list, we use the list-style-image property in css.
+. How can we give a shadow effect to out text in CSS?
+    . to add a shadow to the text we use text shadow property.
+    . text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+. How is cell padding different from cell spacing.
+    . Cell spacing is the space or gap between two consecutive cells.
+    . Cell padding is the space of gap between the text/content of the cell and the edge/border of the cell.
+. what are css counters.
+    . css counters can be used to increment the numbering of the headings automatically.
+. what is @keyframes used for.
+    . it is used to smoothens the transitions and animations.
+. what is the difference between flexbox and grid.
+    . flexbox is one dimentional, focusing on arranging in a single row or column.
+    . grid is two dimentional, managing layouts in both rown and columns simultaneously.
+. wha tis the @media query in css.
+    . The @media query in css is a powerful feature used for creating responsive web designs.
+    . when the styling is based on condition like:
+        . viewport size.
+        . screen resolution.
+        . device orientation. 
+. what is box model in css?
+    . The css Box Model is a fundamental concept that describes how elements are structured and how their size and spacing are calculated in web design.
+    . in Box Model we have four styling 
+        . Content.
+        . padding.
+        . Border.
+        . Margin.
+        
