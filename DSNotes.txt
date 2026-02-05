@@ -1,14 +1,14 @@
-FIXME:FIXME:FIXME:FIXME:. Javascript Algorithms
+. Javascript Algorithms
 
 
-FIXME:. TIME AND SPACE COMPLEXITY.
+. TIME AND SPACE COMPLEXITY.
 
      *Time Complexity:
             .the amount of time taken by an algorithm to run, as a function of input size.
      *Space Complexity:
             .the amount of memory taken by an algorithm to run, as a function of input size.
 
-TODO:TODO:. How to represent Complexity.
+. How to represent Complexity.
             .we do this using asymptotic notations
             .asymptotic notations are mathematical tools to represent time and space Complexity.
             .There are 3 asymptotic notations.
@@ -21,7 +21,7 @@ TODO:TODO:. How to represent Complexity.
 
                     
     
-    TODO:. Big-O Notation(O-notation)
+    . Big-O Notation(O-notation)
                 .The Worst case complexity of an algorithm is represented using the Big-O notation.
                 .Big-O notation describes the complexity of an algorithm using algebraic terms.
                 .as the size of the input increases the time complexity also increases.
@@ -69,14 +69,14 @@ TODO:TODO:. How to represent Complexity.
         .shift / unshift / concat / slice / splice - O(n)
         .forEach / map / filter / reduce - O(n)
         
-TODO:. Big-O Guide
+. Big-O Guide
             .Calculation not dependent on input size - O(1).
             .loop - O(n).
             .nested loops - O(n^2).
             .input size reduce by half - O(logn).
 
 
-TODO:TODO:. Recursion
+. Recursion
                 .Recursion is a problem solving techniqye where the solution depends on solutons to smaller instance of the same problem.
                 .Recursion is when a function calls itself.
                 .a great technique to simplify your solution
@@ -84,11 +84,11 @@ TODO:TODO:. Recursion
                 .Recursion might simplify a problem but it does not always translate to a faster solution. 
                     A recursive solution may be far worse compared to an interative solution.
 
-TODO:TODO:. Search algorithms
+. Search algorithms
                 .Linear search.
                 .Binary search.
 
-    TODO:. Linear search.
+    . Linear search.
             .start at the first element in the array and move towards the last.
             .at each element, check if the element  is equal to the target element.
             .if element found, return the index of the element.
@@ -110,7 +110,7 @@ TODO:TODO:. Search algorithms
                 Big-O = O(n) // linear
 
             )
-    TODO:. Binart search.
+    . Binart search.
             .Only works on sorted array.
             .if the array is empty, return -1 as the element cannot be found.
             .if the array has elements, find the middle element in the array. if target is equal to the middle element, return the middle element index.
@@ -143,7 +143,7 @@ TODO:TODO:. Search algorithms
             Big-O = O(logn) // logarithmetic
             )
 
-    TODO:. Recursive binary search.
+    . Recursive binary search.
                 . eg(
                     function recursiveBinary(arr, target) {
                             return search(arr, target, 0, arr.length-1)
@@ -174,9 +174,9 @@ TODO:TODO:. Search algorithms
                 )
 
 
-TODO:TODO:. Sorting Algorithms.
+. Sorting Algorithms.
 
-TODO:. Bubble Sort.
+. Bubble Sort.
         . it is a poor sorting algorithm.
         . eg(
             function bubbleSort(arr) {
@@ -202,7 +202,7 @@ TODO:. Bubble Sort.
         )
 
 
-TODO:. Quick Sort.
+. Quick Sort.
         . Quick sort uses divide and conquer strategy.
         . Identify the pivot element in the array.
             . pick the first element as pivot.
@@ -250,7 +250,7 @@ TODO:. Quick Sort.
 
         )
 
-TODO:. Merge Sort.
+. Merge Sort.
         . Divide the array into sub arrays, each containing only one element (An array with one element is considered sorted);
         . Repeatedly merge the sub arrays to produce new sorted sub arrays until there is only one sub array remaining. That will be the sorted array.
         . [-6, 20, 8, -2, 4]
@@ -292,9 +292,9 @@ TODO:. Merge Sort.
                 console.log(mergetSort(arr));
         )
 
-TODO:TODO:. Miscellaneous Problems
+. Miscellaneous Problems
 
-TODO:. Cartesian product.
+. Cartesian product.
         . In mathematics, spicifically set theory, the Cartesian product of two sets A and B,  
           denoted AxB, is the set of all ordered pairs (a, b) where a is in A and b is in B.
         . const A = [1, 2]
@@ -325,7 +325,7 @@ TODO:. Cartesian product.
 
         )
 
-TODO:. Climbing staricase.
+. Climbing staricase.
 
         . n=1, climbingStairCase(1) = 1     | (1)
           n=2, climbingStairCase(2) = 2     | (1,1) and (2)
@@ -354,7 +354,7 @@ TODO:. Climbing staricase.
             console.log(climbingStairCase(5)); // 8
     )
 
-TODO:. Tower of Hanoi.
+. Tower of Hanoi.
         .eg(
             function towerOfHanoi(n, fromRoad, toRod, usingRod) {
                 if (n === 1) {
@@ -378,33 +378,33 @@ TODO:. Tower of Hanoi.
 
         )
 
-TODO:TODO:. Algorithm design techniques.
+. Algorithm design techniques.
 
 
-TODO:. Bruce force
+. Bruce force
         . Simple and exhaustive technique that evaluates every possible outcome to find the best solution.
         . eg: Linear search.
-TODO:. Greedy
+. Greedy
         . Choose the best option as the current time, without any consideration for the future.
         . eg (Dijkstra's algorithm, Prim's algorithm and Kruskal's algorithm)
-TODO:. Divide and conquer
+. Divide and conquer
         . Divide the problem into smaller sub-problems. 
             Each sub-problem is the solved and the partial solutions are recombined to determine the overall solution.
         . eg (Binary Search, Quick sort, Merge Sort and Tower of Hanoi)
-TODO:. Dynamic Programming
+. Dynamic Programming
         . Divide the problem into smaller sub-problems. 
           Break it down into smaller but overlapping sub problems. 
           store the result and reuse it for the same sub-problems.
           This is called memorization and is a optimization technique that improves the time complexity of you algorithm.
         . eg (Fibonacci numbers and climbing Stair Case)
-TODO:. Backtracking
+. Backtracking
         . Generate all possible solutions. Check if the solution satisfies all the given constraints and only then you proceed with generatng subsequent. 
           if the constraints are not satisfied, backtrack and go on a different path to find the solution.
         .eg N-Queents problem
 
         
 
-FIXME:FIXME:FIXME: Javascript Data Structures.
+ Javascript Data Structures.
 
         . a data Structure is a way to store and organize data so that it can be used efficiently.
         . Almost every application we built involves data that is modelled in a certain way.
@@ -417,7 +417,7 @@ FIXME:FIXME:FIXME: Javascript Data Structures.
           . OS job scheduling - Queue data structure.
 
 
-TODO:. Array
+. Array
         . An array is a data structure that can hold a collection of values.
         . Arrays can contain a mix of different data types. you can store strings, booleans numbers or even objects all in the same array.
         . Arrays are resizable. you don't have to declare the size of an array before creating it .
@@ -432,7 +432,7 @@ TODO:. Array
             . concat, slice, splice // linear
             . forEach, map, filter, reduce  // linear
 
-TODO:. Object
+. Object
         * object - Big-O time complexity.
            . insert - O(1)  // constant
            . remove - O(1)  // constant
@@ -442,7 +442,7 @@ TODO:. Object
            . Object.values() - O(n)  // linear
            . Object.entries() - O(n)  // linear
 
-TODO:. Set
+. Set
         . A set is a a data structure that can hold a collection of values. The values however must be unique.
         . Set can contain a mix of different data types. You can store strings, booleans, numbers or even objects all in the same set.
         . Sets do not maintain an insertion order.
@@ -459,7 +459,7 @@ TODO:. Set
             set.clear() // clear the set
         )
 
-TODO:. Map.
+. Map.
         . A map is an unordered collection of key-value pairs. Both keys and values can be of any data type.
         . To retreive a value, you can use the corresponding key.
         . Maps are iterable. They can be used with a for of loop.
@@ -478,7 +478,7 @@ TODO:. Map.
                     map.delete('c')
                 )
 
-TODO:. Stack.
+. Stack.
         . The stack data structure is a sequential collection of elements that follow the principle of Last In First Out (LIFO)
         . The last element inseted into the stack is first element to be removed.
         . A stack of plates. The last plate placed on top of the stack is also the first plate removed from the stack.
@@ -491,7 +491,7 @@ TODO:. Stack.
             . undo operation when typing.
             . call stack in Javascript runtime.
 
-TODO:. Queue.
+. Queue.
         . The queue data structure is a sequential collection of elements that follows the principle of First In First Out (FIFO).
         . The first element inserted into the queue is first element to be removed.
         . A queue of people. People enter the queue at one end (rear/tail) and leave the queue from the other end (front/head).
@@ -603,7 +603,7 @@ TODO:. Queue.
             console.log(queue.peek());  // 20
         )
 
-TODO:. Circular Queue.
+. Circular Queue.
         . The size of the circular queue is fixed and a single block of memory is used as if the first element is connected to the last element.
         . Also referred to as circular buffer or ring buffer and follows the FIFO principle.
         . A circular queue will reuse the empty block created during the dequeue operation.
@@ -700,7 +700,7 @@ TODO:. Circular Queue.
         )
         
 
-TODO:. Linked List.
+. Linked List.
         . A linked list is a linear data structure that includes a series of connected nodes.
         . Each node consists of a date value and a pointer that points to the next node.
         . The list elements can be easily inserted or removed without reallocating or reorganization of the entire structure.
@@ -994,7 +994,7 @@ TODO:. Linked List.
             list.print()  // 1 2
         }
 
-TODO:. Linked List Stack and queue
+. Linked List Stack and queue
         .    class Node {
             constructor(value) {
                 this.value = value;
@@ -1086,7 +1086,7 @@ TODO:. Linked List Stack and queue
             }
         }
 
-    TODO:. Stack
+    . Stack
 
         class LinkedListStack {
             constructor() {
@@ -1129,7 +1129,7 @@ TODO:. Linked List Stack and queue
             console.log(stack.pop()); // 30
             console.log(stack.peek()); // 10
 
-    TODO:. Queue
+    . Queue
 
         class LinkedListQueue {
         constructor() {
@@ -1176,7 +1176,7 @@ TODO:. Linked List Stack and queue
 
 
 
-TODO:TODO:. Hash Table
+. Hash Table
 
         . A hash table, also known as hash map, is a data structure that is used to store key-value pairs.
         . Given a key, you can associate a value with that key for very fast lookup.
@@ -1268,7 +1268,7 @@ TODO:TODO:. Hash Table
 
         )
 
-TODO:. charCodeAt() is a string method that returns the Unicode value (UTF-16 code unit) of the character at a specified index in a string.
+. charCodeAt() is a string method that returns the Unicode value (UTF-16 code unit) of the character at a specified index in a string.
         . syntax (
             string.charCodeAt(index) // index is the position of the character in the string(0 based)
         )
@@ -1284,7 +1284,7 @@ TODO:. charCodeAt() is a string method that returns the Unicode value (UTF-16 co
 
 
 
-TODO:TODO:. Tree.
+. Tree.
             . A tree is a hierarchical data structure that consists of nodes connected by edges.
             . A tree is a non-linear data structure, compared to arrays, linked lists, stacks and queues which are linear data structure.
             . In linear data structure, the time required to search is proportional to the size of the data set.
@@ -1315,11 +1315,11 @@ TODO:TODO:. Tree.
             . Height of tree is 2.
 
 
-TODO:. Binary Tree.
+. Binary Tree.
         . A binary tree is a tree data structure in which each node has atmost two children.
         . They are referred to as left child and right child.
 
-TODO:. Binary Search Tree.  
+. Binary Search Tree.  
         . A binary search tree is a binary that has these properties.
             . The value of each left node must be smaller than the parent node.
             . The value of each righ node must be greater than the parent node.
@@ -1339,13 +1339,13 @@ TODO:. Binary Search Tree.
             . Sorting.
             . To implement abstract data types such as lookup tables and priority queues.   
 
-TODO:. Tree Traversal.
+. Tree Traversal.
         . Visiting every node in the tree.
         * A hierarchical data structure like a tree can be traversed in differet ways.
             1. Depth First Search(DFS)
             2. Breadth First Search(BFS)
 
-TODO:. Depth First Search(DFS)
+. Depth First Search(DFS)
         . THe DFS algorithm starts at the root node and explores as far as possible along each branch before backtracking.
         . Visit the root node, visit all the nodes in the left subtree and visit all the nodes in the right subtree.
         * Depending on the order in which we do this, there can be three types of DFS traversals.
@@ -1365,7 +1365,7 @@ TODO:. Depth First Search(DFS)
             . Visit the right subtree.
             . Read the data of the node.
 
-TODO:. Breadth First Search(BFS)
+. Breadth First Search(BFS)
         . Create a queue.
         . Enqueue the root node.
         * As long as the node exists in the queue.

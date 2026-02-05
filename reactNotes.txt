@@ -1,15 +1,15 @@
-MAIN TOPICS: FIXME:FIXME:FIXME:FIXME:
-SUB TOPICS : TODO:TODO:TODO:TODO:TODO:
+MAIN TOPICS: 
+SUB TOPICS : 
 
-CODEEVOLUTION NOTES FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
+CODEEVOLUTION NOTES 
 
-FIXME:. Rules of hooks
+. Rules of hooks
         .Only call Hooks at the Top Level.
             Don't call Hooks inside loops, conditions, or nested functions.
         .Only Call Hooks from React functions.
             Call them from within React functional components and not just any regular javascript function.
     
-TODO: useReducer():
+ useReducer():
             .useReducer is a a react hook that is used for state management.
             .it is an alternative to useState hook.
             .useState is built using useReducer.
@@ -70,7 +70,7 @@ TODO: useReducer():
                 }
             )
 
-FIXME:. REACT ROUTER:
+. REACT ROUTER:
             . To setup React Router install the react router package using the command npm install react-router-dom@latest.
             . in the main.jsx file import BrowserRouter from react-roter-dom, then wrap the App component inside the BrowserRouter.
             . in the App component file import Routes and Route from react-router-dom.
@@ -81,7 +81,7 @@ FIXME:. REACT ROUTER:
                 2) element: when the url matches the path this element will be rendered.
                     eg( <Route path="/" element={<Home />}></Route> ) // when the url mathces the / path the Home component will be rendered.
 
-TODO:TODO:. REACT ROUTER LINKS:
+. REACT ROUTER LINKS:
                 .to navigate to different routes using elements in the UI.
                 .import the Link from react-router-dom package.
                 .after import instead of using the anchor tag(<a href="#"></a>) use the Link component.
@@ -100,7 +100,7 @@ TODO:TODO:. REACT ROUTER LINKS:
                         </Routes>
                     )
 
-TODO:. There is also another link component in the react-router-dom called NavLink
+. There is also another link component in the react-router-dom called NavLink
      . The NavLink  component is similar to the Link component.
      . The difference is that the NavLink by default it receives an active class when the link is the current route.
      . we can use the class active to style it.
@@ -111,7 +111,7 @@ TODO:. There is also another link component in the react-router-dom called NavLi
         }
      )
                 
-TODO:. useNavigate()
+. useNavigate()
             . the useNavigate hook is a react hook that is used to navigate programatically.
             . first import it from the react-router-dom package.
             . after importing invoke the hook inside the component and store it into a varibale.
@@ -137,7 +137,7 @@ TODO:. useNavigate()
 
             )
 
-TODO:. No Match Route.
+. No Match Route.
             . No Match route is used when no path find match with the URL.
             . We can create a NoMatch component and render it when no match is found in the path.
             . add a new Route in the App.js and set the path of it to a * and element as the NoMatch component.
@@ -147,7 +147,7 @@ TODO:. No Match Route.
                 when no other route matches this route will render the NoMatch component.
              )
 
-TODO:. Nested Routes.
+. Nested Routes.
             . Nested Routes is a way to orgainze routes where a parent route controls the layout and a portion of the UI for its child routes.
             . This allows to update only specific sections of a page.
             . However to render the child routes we need to use the Outlet that is imported from react router dom. use it where you need the child components to render.
@@ -161,7 +161,7 @@ TODO:. Nested Routes.
                    while routing to the child routes the path on the url will look like localhost:5173/products/featured, localhost:5173/products/new.
             )
 
-TODO:. Index Route.
+. Index Route.
             . Index Route is a special child route like nested route that renders by default when the user visit the parent Route.
             . it acts as a default view or landing page for that section.
             . instead of the path is receives a index parameter and element parameter.
@@ -178,7 +178,7 @@ TODO:. Index Route.
 
             )
 
-TODO:. Dynamic Route.
+. Dynamic Route.
             . Dynamic Route is a method for creating flexible, data-driven pages using a single route configuration, rather than defining a seperate, state, route for every possible URL.
             . eg (
                 <Route path="users/:userId" element={<UserDetails />}></Route>
@@ -189,7 +189,7 @@ TODO:. Dynamic Route.
             )
 
 
-TODO:. useParams hook allows to access dynamic parameter from the current URL
+. useParams hook allows to access dynamic parameter from the current URL
         . first import useParams from react-router-dom.
         . after importing invoke it inside the component and store it in a variable.
         . eg(
@@ -197,7 +197,7 @@ TODO:. useParams hook allows to access dynamic parameter from the current URL
             const userId = params.userId; // extract the userId from the object.
         )
             
-TODO: . useSearchParams():
+ . useSearchParams():
             . the useSearchParams is a react hook similar to the useState hook, instead of storing the state in memory the useSearchParams store in the URL.
             . import it from react-router-dom and invoke it inside the component.
             . useSearchParams return two values, a object and a function to set the searchParams.
@@ -215,9 +215,9 @@ TODO: . useSearchParams():
             )
 
 
-BROCODE NOTES FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
+BROCODE NOTES 
 
-FIXME:. REACT COMPONENT STYLING.
+. REACT COMPONENT STYLING.
     .There are 3 ways to style a react component with css.
         1). External.
                 .creating a external css file and importing to the jsx file.
@@ -246,7 +246,7 @@ FIXME:. REACT COMPONENT STYLING.
                     }
                 )
             
-FIXME:. PROPS
+. PROPS
         . props are read-only properties that are shared between components.
         . a parent component can send data to a child component.
         . in order for a component to accept props the component function needs a props parameter.
@@ -271,7 +271,7 @@ FIXME:. PROPS
                 }
             )
 
-    .TODO:. defaultProps
+    .. defaultProps
                 . defaultProps are default values for props in case they are not passed from the parent component.
                 . eg(
                     import Student from "./Student";
@@ -298,7 +298,7 @@ FIXME:. PROPS
                     }
                 )
 
-FIXME:. Conditional Rendering.
+. Conditional Rendering.
              . Conditional Rendering allows us to control what gets rendered in the application based on certain conditions.
              . (show, hide, or change components).
              .eg(
@@ -324,11 +324,11 @@ FIXME:. Conditional Rendering.
                 }
              )
 
-FIXME:. React hooks.
+. React hooks.
             .React hooks are special functions that allows functional components to use React features without writing class components.
             .useState, useEffect, useContext, useReducer, useCallback, and more.
 
-    TODO:. useState():
+    . useState():
                 . useState is a react hook that allows the creating of a stateful varible and a setter function to update its value in the virtual DOM.
                 . the useState hook return the value and a setter function
                 . the setter function is used to change the value. if we dont use the setter function the component won't re render and the dom wont update.
@@ -346,7 +346,7 @@ FIXME:. React hooks.
                     setName("Messi") // this will cause a re render of the component and change the dom. 
                                 if we try to normally change the name name="messi" it wil not cause a re render and the dom won't be updated
                 )
-    TODO:. useEffect():
+    . useEffect():
                 . useEffect is a react hook that tells React Do some code when 
                     This component re-renders
                     This component mounts
@@ -384,7 +384,7 @@ FIXME:. React hooks.
                     .if there is no dependencies array the function will run after each re render of the component.
                 )
 
-    TODO:. useContext():
+    . useContext():
                 . useContext hook is a react hook that allows you to share values between multiple levels of components without passing props through each level.
                 . it provides a way to pass data through the component tree without having to pass props down manually at every level.
                 .PROVIDER COMPONENT:
@@ -400,7 +400,7 @@ FIXME:. React hooks.
 
                     
 
-    TODO:. useRef():
+    . useRef():
                 .UseRef hook is a  react hook. "use Reference" Does not cause re-renders when its value changes. when you want a component to "remember" some information,
                     but you don't want that information to trigger new renders.
                 .useRef returns a object.

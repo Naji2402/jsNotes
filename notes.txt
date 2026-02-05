@@ -1,18 +1,16 @@
-FIXME: SECTIONS
-TODO: MAIN TOPICS
 
-SECTION 16: ASYNCHRONOUS JS: PROMISES, ASYNC/AWAIT AND AJAX. FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
+SECTION 16: ASYNCHRONOUS JS: PROMISES, ASYNC/AWAIT AND AJAX. 
 
-TODO:. . Asynchronous code is executed after a task runs in the background finishes.
+. . Asynchronous code is executed after a task runs in the background finishes.
        . Asynchronous code in non-blocking;
        . Execution does't wait for any asynchronous task to finish its work;
        . Callback functions alone do not make code asynchronous!.
        
-TODO:. AJAX(Asynchronous Javascript And XML): Allows us to communicate with remote web servers in an asynchronous way.
+. AJAX(Asynchronous Javascript And XML): Allows us to communicate with remote web servers in an asynchronous way.
         with AJAX calls, we can request data from web servers dynamically.
      .    
 
-TODO:. API(Application Programming Interface): is a Piece of software that can be used by another Piece of software, 
+. API(Application Programming Interface): is a Piece of software that can be used by another Piece of software, 
         in order to allow applications to talk to each other.
      . There are many types of API,s in web development
                 .DOM API.
@@ -21,28 +19,28 @@ TODO:. API(Application Programming Interface): is a Piece of software that can b
                 .Online Api:
                         Application running on a server that receives request for data and sends data back as response.
 
-TODO: JSON data format is the most popular API data format.   
+ JSON data format is the most popular API data format.   
 
-TODO:. Promise: an object that is used as a placeholder for the future result of an asynchronous operation.
+. Promise: an object that is used as a placeholder for the future result of an asynchronous operation.
         .a container for an asynchronous delivered value.
         .a container for a future value.
 
-TODO:. All the Asynchronous tasks like timers, AJAX calls will run on the web API's Enviornment of the browser.
+. All the Asynchronous tasks like timers, AJAX calls will run on the web API's Enviornment of the browser.
      . The callBack queue is basically an ordered list of all the callback functions that are in line to be executed.
         all the callback from an asynchronous tasks are put into the back of the  callback queue after the asynchronous task completed.(after fetching the api the callback function will be put to the callback queue).
 
-TODO:. All the callBacks from the DOM events like the click events are also stored in the callback queue.
+. All the callBacks from the DOM events like the click events are also stored in the callback queue.
 
-TODO:. The event loop looks at the call stack of it is empty except for the global context.
+. The event loop looks at the call stack of it is empty except for the global context.
         if the call stack is empty (no code in execution) the events loop will take the first callback from the callback queue and put it into the call stack to be executed.
      . The event loop decides when each callback is executed.
 
-TODO:. The callback from a promise is not put into the callback queue.
+. The callback from a promise is not put into the callback queue.
      . It is put into a special queue called microtask queue.
      . the microtask queue have priority over the callBack queue.
      . if the callstack is empty the event loop will first check if there is any callback in the microtask queue. if there is it will run all of them before it will run any callbacks from the callback queue.
 
-TODO:. Promise combinators in javascript are static methods on the promise object that allow for handling multiple concurrently and reacting to their collective or individual settlement states.
+. Promise combinators in javascript are static methods on the promise object that allow for handling multiple concurrently and reacting to their collective or individual settlement states.
         they are useful for managing complex asynchronous operations involving multiple independent tasks.
      . Promise combinators are.
                 1.Promise.all(iterable):
@@ -86,11 +84,11 @@ TODO:. Promise combinators in javascript are static methods on the promise objec
                         )
 
 
-SECTION 15: MAPTY APP:OOP, GEOLOCATION,EXTERNAL LIBRARIES, AND MORE FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
+SECTION 15: MAPTY APP:OOP, GEOLOCATION,EXTERNAL LIBRARIES, AND MORE 
 
-TODO:. use the LeafLet library to implement a map in the website.
+. use the LeafLet library to implement a map in the website.
 
-TODO:. The setView method is a leaflet method is a core funcion of a map object, that allows you to define the center point and zoom level of the map's display.
+. The setView method is a leaflet method is a core funcion of a map object, that allows you to define the center point and zoom level of the map's display.
      .syntax(
         map.setView([latitude, longitude], zoomLevel, options)
      ) 
@@ -103,7 +101,7 @@ TODO:. The setView method is a leaflet method is a core funcion of a map object,
         })
      )
 
-TODO:. The Localstorage is an api that the browser provides to us.
+. The Localstorage is an api that the browser provides to us.
      *. To save data we use the setItem method of the Localstorage.
         eg( LocalStorage.setItem('key', 'value'))
      . when we save the data through the setItem the value must be a string or must be converted to a string using the JSON.stringify method.
@@ -117,14 +115,14 @@ TODO:. The Localstorage is an api that the browser provides to us.
         localStorage.getItem('workouts'); // gets the value with the key workouts
       )
 
-SECTION 14: OBJECT ORIENTED PROGRAMMING(OOP) FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
+SECTION 14: OBJECT ORIENTED PROGRAMMING(OOP) 
 
-TODO:. .Classes are just 'Syntactic sugar' over constructor funtions.
+. .Classes are just 'Syntactic sugar' over constructor funtions.
        .Classes are not hoisted.
        .Classes are first class citizens.
        .Class body is always executed in strict mode. 
 
-TODO:. There are 4 fundamental OOP principles.
+. There are 4 fundamental OOP principles.
         1) Abstraction:
                 .abstraction means ignoring or hiding details that don't matter, allowing us too get an overview perspective of the the thing we're implementing.
         2) Encapsulation:
@@ -136,13 +134,13 @@ TODO:. There are 4 fundamental OOP principles.
         4) Polymorphism:
                 .polymorphism means that a child class can overwrite a method it inherited froma parent class. 
                 
-TODO:. In javascript there is something called prototypes.
+. In javascript there is something called prototypes.
         .all objects are linked to a prototype object.
      . Prototypal inheritance:
                 .it means all objects that are linked to a prototype object can use the methods and properties that are defined on that prototype.
                 .the prototype contain methods that are accessible to all objects linked to that prototype;
 
-TODO:. There are 3 ways of implementing prototypal inheritance in javascript.
+. There are 3 ways of implementing prototypal inheritance in javascript.
         1) Constructor funcions.
                 .Technique to create objects from a function.
                 .This is how built-in object like Arrays, Maps or Sets are actually implemented.
@@ -189,14 +187,14 @@ TODO:. There are 3 ways of implementing prototypal inheritance in javascript.
                         const steven = Object.create(PersonProto);
                 )
 
-TODO:. 1) In javascript classes are not hoisted.
+. 1) In javascript classes are not hoisted.
        2) classes are also first-class citizens.
        3) classes are executed in strict mode .
 
-TODO:. Every object in javascript can have getter and setter property.
+. Every object in javascript can have getter and setter property.
         they are basically funcions that get's and set's value.
 
-TODO:. Inheritance between classes.
+. Inheritance between classes.
      . eg(
 
         class PersonCl {
@@ -244,7 +242,7 @@ TODO:. Inheritance between classes.
      .The super keyword in the constructor will call the constructor of the parent class. 
      .the superkeyword is necessory to ensrue that the parent class's properties and methods are correctly initialized before the child class's own constructor logic is executed.
 
-TODO:. Fields and methods related to encapsulation.
+. Fields and methods related to encapsulation.
           1). Public fields:
                 .we can think of field as a property that will be on all class instances.
                 .eg(
@@ -357,11 +355,11 @@ TODO:. Fields and methods related to encapsulation.
                 .static fields and static methods are not accessible on the instances.
                 .they are only accessible on the class itself
                 .just use the static keyword in front of the fields and methods.
-TODO:. 
+. 
 
-SECTION 13: ADVANCED DOM AND EVENTS FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
+SECTION 13: ADVANCED DOM AND EVENTS 
 
-TODO:. To implement scrolling on the website use window.scrollTo method.
+. To implement scrolling on the website use window.scrollTo method.
         it enable us to scroll to a specific set of coordinates within the browser window.
      .syntax( 
         .window.scrollTo(xCoord, yCoord)
@@ -378,7 +376,7 @@ TODO:. To implement scrolling on the website use window.scrollTo method.
         }) // scroll the page to a poistion 500px from the top, 0 from the left and with a smooth behaviour;
       )
 
-TODO:. scrollIntoView method is another method to implement scrolling.
+. scrollIntoView method is another method to implement scrolling.
      .syntax(
            element.scrollIntoView(options) //scrolls to the element defined in front of the method.
       )
@@ -386,7 +384,7 @@ TODO:. scrollIntoView method is another method to implement scrolling.
         element.scrollIntoView({behaviour: 'smooth'}) //scrolls to the element definded in front of the method is a smooth behavior.
      )
 
-TODO:. getBoundingClientRect is a javascript method that returns the size of an element and its position relative to the viewport(the visible area of the browser window) .
+. getBoundingClientRect is a javascript method that returns the size of an element and its position relative to the viewport(the visible area of the browser window) .
         it tells you where an element is on the screen and how big is it, relative to what the user sees right now.
      .syntax(
         element.getBoundingClientRect();
@@ -405,7 +403,7 @@ TODO:. getBoundingClientRect is a javascript method that returns the size of an 
         }   
      )
 
-TODO:. The pageXOffset and pageYOffset are properties that tell you how far the page has been scrolled.
+. The pageXOffset and pageYOffset are properties that tell you how far the page has been scrolled.
         they measure scroll distance relative to the top-left corner of the document.
         it give how many pixels yoy have scrolled from the top and right.
       . eg (
@@ -413,7 +411,7 @@ TODO:. The pageXOffset and pageYOffset are properties that tell you how far the 
         window.pageYOffset // the outut will be 350
       )  
 
-TODO:. Event propagation in javascript describes how an event travels through the DOM from the moment its triggered until it finishes 
+. Event propagation in javascript describes how an event travels through the DOM from the moment its triggered until it finishes 
      . In javascript, when an event occurs(like a click), it does'nt just fire on the element you clicked.
         it goes throught three phases.
                 1. Caturing phase
@@ -423,7 +421,7 @@ TODO:. Event propagation in javascript describes how an event travels through th
                 3. Bubbling Phase(Event Bubble)
                         Event travels back up from the targer > its parents > up to the document > window         
 
-TODO:. The getAttibute() in javascript is a method used to read the value of an attribute from an HTML element.
+. The getAttibute() in javascript is a method used to read the value of an attribute from an HTML element.
           it retreives the string value of an attribute exactly as it appears in the HTML   
      . syntax(
         element.getAttibute(attributeName);
@@ -435,16 +433,16 @@ TODO:. The getAttibute() in javascript is a method used to read the value of an 
         console.log(div.getAttibute("data-info")) // "hello"
      )   
 
-TODO:. DOM traversing in javascript refers to the process of navigating the DOM to access and maniplate the elements within an HTML document.
+. DOM traversing in javascript refers to the process of navigating the DOM to access and maniplate the elements within an HTML document.
         This allow you to move between the nodes, exploring their relationships and finding specific elements
 
-TODO:. The closest method in javascript is a way to traverse the DOM tree upwards from a given element.
+. The closest method in javascript is a way to traverse the DOM tree upwards from a given element.
         searching for the nearest ancester or the element that matches a specified css selector
      . eg(
         element.closest('.header') // returns the closest element from the elements that has a class named header.
      )   
 
-TODO:. The Intersection Observer API provides a way to observe changes in the intersection target elements with an root element or with the document's viewport.
+. The Intersection Observer API provides a way to observe changes in the intersection target elements with an root element or with the document's viewport.
          .target element is the DOM element to observe for intersection changes.
          .root is the element that the target is intersecting.
              we can set it to an element. setting it into null will enable the intersecting to the viewport. that is the viewport will be the root element.
@@ -494,9 +492,9 @@ TODO:. The Intersection Observer API provides a way to observe changes in the in
      )
 
 
-SECTION 12: NUMBERS, DATES, INTI, TIMERS FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
+SECTION 12: NUMBERS, DATES, INTI, TIMERS 
 
-TODO:. Type conversion and Coercion Refer to the process of changing a value from one data type to another.
+. Type conversion and Coercion Refer to the process of changing a value from one data type to another.
         *Type conversion
                 .Type conversion is when the developer manually convert a value from one type to another using built in function or constructors.
                 .The developer is manually instructing the javascript to perform the conversion.
@@ -522,7 +520,7 @@ TODO:. Type conversion and Coercion Refer to the process of changing a value fro
 
                 )
 
-TODO:. Intl.DateTimeFormat constructor in javascript is an API used to create objects that enable language-sensitive date and time formatting.
+. Intl.DateTimeFormat constructor in javascript is an API used to create objects that enable language-sensitive date and time formatting.
         this allow us to display dates and times in a way that is appropriate for a specific locale,
      . syntax ( new Intl.DateTimeFormat(locales, options).formate(<what to formate(date)>)).
      . to get locale from the user 
@@ -545,7 +543,7 @@ TODO:. Intl.DateTimeFormat constructor in javascript is an API used to create ob
         new Intl.DateTimeFormat('ar-SY', options).format(now) // gives the current time and date based on the locale and options we passed to Inl Api
        )
 
-TODO:. Intl.NumberFormat constructor in js is an API used to create language-sensitive number formating.
+. Intl.NumberFormat constructor in js is an API used to create language-sensitive number formating.
         similat to Intl.DateTimeFormat it accepts an locale and options.
      . syntax ( new Intl.NumberFormat(locale, options).format(<what to format>))
      . eg(
@@ -563,16 +561,16 @@ TODO:. Intl.NumberFormat constructor in js is an API used to create language-sen
      .more options are available.
 
 
-SECTION 11: WORKING WITH ARRAYS FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
+SECTION 11: WORKING WITH ARRAYS 
 
-TODO:. The slice method returns a copy of an array into a new array.
+. The slice method returns a copy of an array into a new array.
         The original array will not be modified.
      . eg( const animals = ['ant', 'bison', 'camel', 'duck', 'elephant']
             console.log(animals.slice(2, 5)) // ['camel', 'duck']
             console.log(animals) // ['ant', 'bison', 'camel', 'duck', 'elephant']
         )
 
-TODO:. The splice method is used to change the contents of an array by removing or replacing existing elements .
+. The splice method is used to change the contents of an array by removing or replacing existing elements .
         it directly modifies the original array and returns an array conaining the deleted elements.
      . splice(1, 2) in this 1 is the starting index and 2 is how many elements should be removed from the starting index.
      . eg( let fruits = ['apple', 'banana', 'cherry', 'date']
@@ -580,7 +578,7 @@ TODO:. The splice method is used to change the contents of an array by removing 
            // removedFruits is ['banana', 'cherry']
      )
 
-TODO:. insertAdjacentHTML method is used to add html elemets via javascript.
+. insertAdjacentHTML method is used to add html elemets via javascript.
         It is similar to innerHTML.
         insertAdjacentHTML takes two parameters.
             *first parameter is where to add there are four types(afterbegin,beforebegin, beforeend, afterend).
@@ -588,21 +586,21 @@ TODO:. insertAdjacentHTML method is used to add html elemets via javascript.
         eg( body.insertAdjacentHTML('afterbegin', html) ), 
             where afterbegin is where to add the element and the html is the html code we want to insert into to body element.
 
-TODO:. find method is an array method used to loop through the array and returns the first value that satisfies a specific condition.
+. find method is an array method used to loop through the array and returns the first value that satisfies a specific condition.
          if no elements matches the condition it returns undefined.
        .eg ( arra.find((element) => {
             return element.name === 'Messi';
         }));
          returns the first element that has the name property equal to Messi.
 
-TODO:. findIndex method in an array is used to loop through an array and returns the index of the first element that satisfies a specific condition.
+. findIndex method in an array is used to loop through an array and returns the index of the first element that satisfies a specific condition.
         if no element mathches the condition it returns undefined.
      . eg( arr.findIndex((element) => {
         return element.name === 'Messi';
      }));
         returns the first element that has  the name property equal to Messi.
 
-TODO:. The object.groupby method in js loops throug an iterable like an array and turns it into an object according to the string values returned from a callback function.
+. The object.groupby method in js loops throug an iterable like an array and turns it into an object according to the string values returned from a callback function.
      .  eg( let variable = Object.groupBy(array, (a) => {
             return a > 0 ? 'first' : 'second'
        }) )
@@ -610,14 +608,14 @@ TODO:. The object.groupby method in js loops throug an iterable like an array an
      . eg( const groupedAccount = Object.groupBy(array, (arr) => acc.type) )
          this will make a new object and group it int arrays based on the type of the objects.
 
-TODO:. The toReversed method is used to reverse an array without mutating the original array.
+. The toReversed method is used to reverse an array without mutating the original array.
         unlike reverse method toReversed method does not change the original array.
      . eg( arr.toReversed() )
         this will take a copy of the arr array and reverse the array.
      . SIMILAR( ( toReversed(), reverse() ), (toSorted(), sort() ), ( toSpliced(), splice() ))
         these are the other method similar to the toReversed method.
 
-TODO:. Which array method to use.
+. Which array method to use.
             * To Mutate the original array.
                     .push(), pop(), shift(), unshift(), splice(), reverse(), sort(), fill();
             * Non destructive versions of reverse(), sort(), splice().
@@ -637,15 +635,15 @@ TODO:. Which array method to use.
             * To loop through an array.
                     .forEach()
 
-SECTION 10: FUNCTIONS FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
+SECTION 10: FUNCTIONS 
 
-TODO: .Js Does not have passing by reference. 
+ .Js Does not have passing by reference. 
     The reference that we pass pass is a value.
     It is a value that contains a memmory address. 
     Basically we pass a referece to the funcion but we do not pass by a referece.
 
 
-TODO:. Js has first class funcion it enable us to write Higher order functions.
+. Js has first class funcion it enable us to write Higher order functions.
 
     *first class functions
         .Treats functions as first class citizens
@@ -660,13 +658,13 @@ TODO:. Js has first class funcion it enable us to write Higher order functions.
         .this is only possible because of first class function.
         .eg (addEventListener())
 
-TODO:. Advantages of callBack function
+. Advantages of callBack function
 
         .allow us to split up to code to reusable codes.
         .(imp) callBack functions allow us to create abstraction.
     
 
-TODO:. The this keyword depends on how the function is called.
+. The this keyword depends on how the function is called.
         .if the function is called by the object (eg jonas.book()),
             the this keyword points to the jonas object.
         .if the function is called not by the object (eg: the book method is stored outside in a varible),
@@ -694,7 +692,7 @@ TODO:. The this keyword depends on how the function is called.
                     where the bookEw has the eurowings bound as the this keyword.
 
 
-TODO:. In closure a function has access to the variable enviornment of the execution context in which the functiion was created,
+. In closure a function has access to the variable enviornment of the execution context in which the functiion was created,
         even after that execution context is finished executing.
     .A closure is the closed over variable enviornment of the execution context in  which a funcion was created, 
         even after that execution context is gone.
@@ -702,7 +700,7 @@ TODO:. In closure a function has access to the variable enviornment of the execu
         the function keeps reference to its outer scope, which preserves the scope chain throughout time.
 
 
-FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:
+
 
 * The javascript engine is the heart of the runtime.
         . The javascript engine conains a heap and a call stack.
