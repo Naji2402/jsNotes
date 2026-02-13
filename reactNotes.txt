@@ -1,6 +1,214 @@
 MAIN TOPICS: 
 SUB TOPICS : 
 
+BROCODE NOTES 
+
+. REACT COMPONENT STYLING.
+    .There are 3 ways to style a react component with css.
+        1). External.
+                .creating a external css file and importing to the jsx file.
+        2). Modules.
+                .recommended way of styling.
+                .create a folder for the component and create a module css file and import.
+                .eg Button > Button.jsx, Button.module.css 
+        3). Inline.
+                .create an object inside the component itself and put it inside the component.
+                .eg(
+                    function Button() {
+                        const styles = {
+                            backgroundColor: " hsl(200, 100%, 50%)",
+                            color: "white",
+                            padding: "10px 20px",
+                            borderRadius: "5px",
+                            border: "none",
+                            cursor: "pointer",
+                        };
+                        
+                        return (
+                            <>
+                            <button style={styles}>Click Me</button>
+                            </>
+                        );
+                    }
+                )
+            
+. PROPS
+        . props are read-only properties that are shared between components.
+        . a parent component can send data to a child component.
+        . in order for a component to accept props the component function needs a props parameter.
+        . the props parameter is going to be a javascript object.
+        . in order to use the key value that we passes from the parent we use the props.key
+            eg( 
+
+                function App() {
+                    return(
+                        <>
+                            <Student name='SpongeBob' age={30} isStudent={true}/>
+                        </>
+                    );
+                }
+
+                function Student(props){
+                    return(
+                        <p>Name: {props.name}</p>
+                        <p>Age: {props.age}</p>
+                        <p>Student: {props.isStudent ? 'Yes' : 'No'}</p>
+                    );
+                }
+            )
+
+    .. defaultProps
+                . defaultProps are default values for props in case they are not passed from the parent component.
+                . eg(
+                    import Student from "./Student";
+
+                    function App() {
+                        return(
+                            <>
+                                <Student />
+                            </>
+                        );
+                    }
+
+
+                    function Student({name = 'Guest', age=0, isStudent=false}) {
+                        return(
+                            <>
+                            <div className="student">
+                                <p>Name: {name}</p>
+                                <p>Age: {age}</p>
+                                <p>Student: {isStudent ? 'Yes' : 'No'}</p>
+                            </div>
+                            </>
+                        );
+                    }
+                )
+
+. Conditional Rendering.
+             . Conditional Rendering allows us to control what gets rendered in the application based on certain conditions.
+             . (show, hide, or change components).
+             .eg(
+                function App() {
+                    return(
+                        <>
+                        <UserGreeting isLoggedIn ={true} username = 'Lionel Messi' />
+
+                        </>
+                    );
+                }
+
+                function UserGreeting(props) {
+                    if (props.isLoggedIn) {
+                        return(
+                            <h2>Welcome {props.username}</h2>
+                        )
+                    }else {
+                        return(
+                        <h2>Please log in to continue</h2>
+                        )
+                    }
+                }
+             )
+
+. React hooks.
+            .React hooks are special functions that allows functional components to use React features without writing class components.
+            .useState, useEffect, useContext, useReducer, useCallback, and more.
+
+    . useState():
+                . useState is a react hook that allows the creating of a stateful varible and a setter function to update its value in the virtual DOM.
+                . the useState hook return the value and a setter function
+                . the setter function is used to change the value. if we dont use the setter function the component won't re render and the dom wont update.
+                . let [name, setName] = useState(); in this the name is the value and the setName is the setter function.
+                        to change the name we need to use the setName setter function.
+                        setName("Neymar") this will cause the component to re render and the name will be updated to Neymar, updates will be reflected in the dom.
+                . The useState hook also has a updater function. it is a function passed as as argument to the setter function.
+                    it allow for safe updates based on the previous state used with multiple statte updates and synchronous functions.
+                    setName(prevName => prevName + 'Bye' )
+
+                .eg(
+
+                    let [name, setName] = useState();
+                    // to change the name we need to use the setter function ie setName.
+                    setName("Messi") // this will cause a re render of the component and change the dom. 
+                                if we try to normally change the name name="messi" it wil not cause a re render and the dom won't be updated
+                )
+    . useEffect():
+                . useEffect is a react hook that tells React Do some code when 
+                    This component re-renders
+                    This component mounts
+                    The state of a value
+                .useEffect(function, [dependencies])
+                    .useEffect(() => {})           //Runs after every re-render.
+                    .useEffect(() => {}, [])       //Runs only on mount.
+                    .useEffect(() => {}, [value])  //Runs on mount + when value changes
+                .USES
+                    .#1 Event Listeners.
+                    .#2 DOM manipulation.
+                    .#3 Subsciptions (real-time updates).
+                    .#4 Fetching Data from an API.
+                    .#5 Clean up when a component unmounts.
+                .the useEffect hook also has a cleanup function.
+                    when we return a function inside the useEffect hook it is a cleanup function.
+                    the cleanup function will execute when the component unmounts(when removed)
+                    eg(
+                        useEffect(() => {
+
+                            return () => {
+
+                            } //cleanup function, run when the component unmounts.
+                        })
+                    )
+                .eg(
+                    const [count, setCount] = useState(0);
+
+                    useEffect(() => {
+                        document.title = `Count ${count}`
+                    }, [count]) 
+
+                    .every time the count change the function will run.
+                    .if the dependencies array was empty [] the function will run only once when the component mount(when its added to the dom).
+                    .if there is no dependencies array the function will run after each re render of the component.
+                )
+
+    . useContext():
+                . useContext hook is a react hook that allows you to share values between multiple levels of components without passing props through each level.
+                . it provides a way to pass data through the component tree without having to pass props down manually at every level.
+                .PROVIDER COMPONENT:
+                    1). import {createContext} from 'react';
+                    2). export const MyContext = createContext();
+                    3). <MyContext.Provider value={value}>
+                            <Child />
+                        <MyContext.Provider>
+                .CONSUMER COMPONENT:
+                    1). import React, { useContext } from 'react';
+                        import { MyContext } from '<provider component>'
+                    2). const value = useContext(MyContext)
+
+                    
+
+    . useRef():
+                .UseRef hook is a  react hook. "use Reference" Does not cause re-renders when its value changes. when you want a component to "remember" some information,
+                    but you don't want that information to trigger new renders.
+                .useRef returns a object.
+                    the object will look like {current: initialValue}
+                .USES:
+                    1). Accessing / Interacting with DOM elements.
+                    2). Handling Focus, Animations, and Transitions.
+                    3). Managing Timers and Intervals.
+                .eg(
+                    const ref = useRef(0);
+
+                    //The object looks like: { current: 0}
+
+                    function handleClick() {
+                        ref.current++;
+                        console.log(ref.current);
+                    }
+
+                    //this will increase the initialValue on each click but does not re render the component.
+                )
+                    
+
 CODEEVOLUTION NOTES 
 
 . Rules of hooks
@@ -185,7 +393,7 @@ CODEEVOLUTION NOTES
 
                 // in this example whe the URl is users/anything it it will search if there is any routes with fixed element with a fixed path, 
                     if there is it will render that element in the given path,
-                    if there is not then ther UserDetails element is rendered. 
+                    if there is not then the UserDetails element is rendered. 
             )
 
 
@@ -215,210 +423,3 @@ CODEEVOLUTION NOTES
             )
 
 
-BROCODE NOTES 
-
-. REACT COMPONENT STYLING.
-    .There are 3 ways to style a react component with css.
-        1). External.
-                .creating a external css file and importing to the jsx file.
-        2). Modules.
-                .recommended way of styling.
-                .create a folder for the component and create a module css file and import.
-                .eg Button > Button.jsx, Button.module.css 
-        3). Inline.
-                .create an object inside the component itself and put it inside the component.
-                .eg(
-                    function Button() {
-                        const styles = {
-                            backgroundColor: " hsl(200, 100%, 50%)",
-                            color: "white",
-                            padding: "10px 20px",
-                            borderRadius: "5px",
-                            border: "none",
-                            cursor: "pointer",
-                        };
-                        
-                        return (
-                            <>
-                            <button style={styles}>Click Me</button>
-                            </>
-                        );
-                    }
-                )
-            
-. PROPS
-        . props are read-only properties that are shared between components.
-        . a parent component can send data to a child component.
-        . in order for a component to accept props the component function needs a props parameter.
-        . the props parameter is goint to be a javascript object.
-        . in order to use the key value that we passes from the parent we use the props.key
-            eg( 
-
-                function App() {
-                    return(
-                        <>
-                            <Student name='SpongeBob' age={30} isStudent={true}/>
-                        </>
-                    );
-                }
-
-                function Student(props){
-                    return(
-                        <p>Name: {props.name}</p>
-                        <p>Age: {props.age}</p>
-                        <p>Student: {props.isStudent ? 'Yes' : 'No'}</p>
-                    );
-                }
-            )
-
-    .. defaultProps
-                . defaultProps are default values for props in case they are not passed from the parent component.
-                . eg(
-                    import Student from "./Student";
-
-                    function App() {
-                        return(
-                            <>
-                                <Student />
-                            </>
-                        );
-                    }
-
-
-                    function Student({name = 'Guest', age=0, isStudent=false}) {
-                        return(
-                            <>
-                            <div className="student">
-                                <p>Name: {name}</p>
-                                <p>Age: {age}</p>
-                                <p>Student: {isStudent ? 'Yes' : 'No'}</p>
-                            </div>
-                            </>
-                        );
-                    }
-                )
-
-. Conditional Rendering.
-             . Conditional Rendering allows us to control what gets rendered in the application based on certain conditions.
-             . (show, hide, or change components).
-             .eg(
-                function App() {
-                    return(
-                        <>
-                        <UserGreeting isLoggedIn ={true} username = 'Lionel Messi' />
-
-                        </>
-                    );
-                }
-
-                function UserGreeting(props) {
-                    if (props.isLoggedIn) {
-                        return(
-                            <h2>Welcome {props.username}</h2>
-                        )
-                    }else {
-                        return(
-                        <h2>Please log in to continue</h2>
-                        )
-                    }
-                }
-             )
-
-. React hooks.
-            .React hooks are special functions that allows functional components to use React features without writing class components.
-            .useState, useEffect, useContext, useReducer, useCallback, and more.
-
-    . useState():
-                . useState is a react hook that allows the creating of a stateful varible and a setter function to update its value in the virtual DOM.
-                . the useState hook return the value and a setter function
-                . the setter function is used to change the value. if we dont use the setter function the component won't re render and the dom wont update.
-                . let [name, setName] = useState(); in this the name is the value and the setName is the setter function.
-                        to change the name we need to use the setName setter function.
-                        setName("Neymar") this will cause the component to re render and the name will be updated to Neymar, updates will be reflected in the dom.
-                . The useState hook also has a updater function. it is a function passed as as argument to the setter function.
-                    it allow for safe updates based on the previous state used with multiple statte updates and synchronous functions.
-                    setName(prevName => prevName + 'Bye' )
-
-                .eg(
-
-                    let [name, setName] = useState();
-                    // to change the name we need to use the setter function ie setName.
-                    setName("Messi") // this will cause a re render of the component and change the dom. 
-                                if we try to normally change the name name="messi" it wil not cause a re render and the dom won't be updated
-                )
-    . useEffect():
-                . useEffect is a react hook that tells React Do some code when 
-                    This component re-renders
-                    This component mounts
-                    The state of a value
-                .useEffect(function, [dependencies])
-                    .useEffect(() => {})           //Runs after every re-render.
-                    .useEffect(() => {}, [])       //Runs only on mount.
-                    .useEffect(() => {}, [value])  //Runs on mount + when value changes
-                .USES
-                    .#1 Event Listeners.
-                    .#2 DOM manipulation.
-                    .#3 Subsciptions (real-time updates).
-                    .#4 Fetching Data from an API.
-                    .#5 Clean up when a component unmounts.
-                .the useEffect hook also has a cleanup function.
-                    when we return a function inside the useEffect hook it is a cleanup function.
-                    the cleanup function will execute when the component unmounts(when removed)
-                    eg(
-                        useEffect(() => {
-
-                            return () => {
-
-                            } //cleanup function, run when the component unmounts.
-                        })
-                    )
-                .eg(
-                    const [count, setCount] = useState(0);
-
-                    useEffect(() => {
-                        document.title = `Count ${count}`
-                    }, [count]) 
-
-                    .every time the count change the function will run.
-                    .if the dependencies array was empty [] the function will run only once when the component mount(when its added to the dom).
-                    .if there is no dependencies array the function will run after each re render of the component.
-                )
-
-    . useContext():
-                . useContext hook is a react hook that allows you to share values between multiple levels of components without passing props through each level.
-                . it provides a way to pass data through the component tree without having to pass props down manually at every level.
-                .PROVIDER COMPONENT:
-                    1). import {createContext} from 'react';
-                    2). export const MyContext = createContext();
-                    3). <MyContext.Provider value={value}>
-                            <Child />
-                        <MyContext.Provider>
-                .CONSUMER COMPONENT:
-                    1). import React, { useContext } from 'react';
-                        import { MyContext } from '<provider component>'
-                    2). const value = useContext(MyContext)
-
-                    
-
-    . useRef():
-                .UseRef hook is a  react hook. "use Reference" Does not cause re-renders when its value changes. when you want a component to "remember" some information,
-                    but you don't want that information to trigger new renders.
-                .useRef returns a object.
-                    the object will look like {current: initialValue}
-                .USES:
-                    1). Accessing / Interacting with DOM elements.
-                    2). Handling Focus, Animations, and Transitions.
-                    3). Managing Timers and Intervals.
-                .eg(
-                    const ref = useRef(0);
-
-                    //The object looks like: { current: 0}
-
-                    function handleClick() {
-                        ref.current++;
-                        console.log(ref.current);
-                    }
-
-                    //this will increase the initialValue on each click but does not re render the component.
-                )
-                    
