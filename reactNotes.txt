@@ -92,7 +92,6 @@ BROCODE NOTES
                     return(
                         <>
                         <UserGreeting isLoggedIn ={true} username = 'Lionel Messi' />
-
                         </>
                     );
                 }
@@ -278,6 +277,8 @@ CODEEVOLUTION NOTES
                 }
             )
 
+
+
 . REACT ROUTER:
             . To setup React Router install the react router package using the command npm install react-router-dom@latest.
             . in the main.jsx file import BrowserRouter from react-roter-dom, then wrap the App component inside the BrowserRouter.
@@ -422,4 +423,4 @@ CODEEVOLUTION NOTES
                 //
             )
 
-
+ . 

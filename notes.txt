@@ -1,119 +1,367 @@
 
-SECTION 16: ASYNCHRONOUS JS: PROMISES, ASYNC/AWAIT AND AJAX. 
+SECTION 10: FUNCTIONS 
 
-. . Asynchronous code is executed after a task runs in the background finishes.
-       . Asynchronous code in non-blocking;
-       . Execution does't wait for any asynchronous task to finish its work;
-       . Callback functions alone do not make code asynchronous!.
-       
-. AJAX(Asynchronous Javascript And XML): Allows us to communicate with remote web servers in an asynchronous way.
-        with AJAX calls, we can request data from web servers dynamically.
-     .    
+ .Js Does not have passing by reference. 
+    The reference that we pass pass is a value.
+    It is a value that contains a memmory address. 
+    Basically we pass a referece to the funcion but we do not pass by a referece.
 
-. API(Application Programming Interface): is a Piece of software that can be used by another Piece of software, 
-        in order to allow applications to talk to each other.
-     . There are many types of API,s in web development
-                .DOM API.
-                .Geolocation API.
-                .Own class API.
-                .Online Api:
-                        Application running on a server that receives request for data and sends data back as response.
+. Js has first class funcion it enable us to write Higher order functions.
 
- JSON data format is the most popular API data format.   
+    *first class functions
+        .Treats functions as first class citizens
+        .This means that function are simply treated as values
+        .Function are just another type of object in js.
+        .functions are values too
+        .can pass functions as arguments to other functions.
+        .eg (bind())
+    
+    *Higher order functions
+        .A function that receives another function as an argument, that returns a new function, or both
+        .this is only possible because of first class function.
+        .eg (addEventListener())
 
-. Promise: an object that is used as a placeholder for the future result of an asynchronous operation.
-        .a container for an asynchronous delivered value.
-        .a container for a future value.
+. Advantages of callBack function
 
-. All the Asynchronous tasks like timers, AJAX calls will run on the web API's Enviornment of the browser.
-     . The callBack queue is basically an ordered list of all the callback functions that are in line to be executed.
-        all the callback from an asynchronous tasks are put into the back of the  callback queue after the asynchronous task completed.(after fetching the api the callback function will be put to the callback queue).
+        .allow us to split up to code to reusable codes.
+        .(imp) callBack functions allow us to create abstraction.
+    
 
-. All the callBacks from the DOM events like the click events are also stored in the callback queue.
+. The this keyword depends on how the function is called.
+        .if the function is called by the object (eg jonas.book()),
+            the this keyword points to the jonas object.
+        .if the function is called not by the object (eg: the book method is stored outside in a varible),
+            then the this keyword points to undefined.
 
-. The event loop looks at the call stack of it is empty except for the global context.
-        if the call stack is empty (no code in execution) the events loop will take the first callback from the callback queue and put it into the call stack to be executed.
-     . The event loop decides when each callback is executed.
-
-. The callback from a promise is not put into the callback queue.
-     . It is put into a special queue called microtask queue.
-     . the microtask queue have priority over the callBack queue.
-     . if the callstack is empty the event loop will first check if there is any callback in the microtask queue. if there is it will run all of them before it will run any callbacks from the callback queue.
-
-. Promise combinators in javascript are static methods on the promise object that allow for handling multiple concurrently and reacting to their collective or individual settlement states.
-        they are useful for managing complex asynchronous operations involving multiple independent tasks.
-     . Promise combinators are.
-                1.Promise.all(iterable):
-                        . if all promises resolve it returns a single promise that resolves to an array of their results, in the same order as the input iterable.
-                        . if any promise rejects, Promise.all immediatly rejects with the reason of the first rejected promise.
-                        . eg(
-                                const p1 = Promise.resolve(1)
-                                const p2 = Promise.resolve(2)
-                                const p3 = Promise.resolve(3)
-
-                                Promise.all([p1, p2, p3]).then(res => console.log(res)) // Output: [1, 2, 3]
-                        )
-                2.Promise.race(iterable):
-                        . receives an array of promises and return a promise.
-                        . the promise that retuned is settled as soon as one of the input promises settles.
-                        . eg(
-                                const pFast = new Promise(res => setTimout(() => res('fast'), 50))
-                                const pSLow = new Promise(res => setTimout(() => res('slow'), 100))
-
-                                Promise.race([pFast, pSLow]).then(res => console.log(res)) // Output: "fast"
-                        )
-                3.Promise.allSettled(iterable):
-                        . receives an array of promises and return a array of all the settled promises.
-                        . it never short circuits when one of the promise got rejected
-                        . eg(
-                                Promise.allSettled([
-                                        Promise.resolve('success'),
-                                        Promise.reject('error'),
-                                        Promise.resolve('another')
-                                ]).then(res => console.log(res)) // Output: [{...}, {...}, {...}]
-                        )
-                4.Promise.any(iterable):
-                        . receives an array of promises and return a promise that resolves first with the value of the promise that resolves.
-                        . rejected promises are ignored.
-                        . eg(
-                                Promise.any([
-                                        Promise.resolve('success'),
-                                        Promise.reject('error'),
-                                        Promise.resolve('another')
-                                ]).then(res => console.log(res)) // Output: 'Success'
-                        )
+        *How to tell js what the this keyword should look like. using 
+            *call():
+                    .call(<this keyword>, <rest of the parameters>)
+                    .we call the call method first and then the call method calls the funcion
+                          with the this keyword set to the first argument we pass in the call method.
+                    .eg( book.call(jonas, 23, 'Jonas Schmedtmann) ). 
+                          jonas is the this keyword and the rest of the arguments is like normal arguments.
+            *apply():
+                    .apply method does not receives arguments after the this keyword like call method
+                    .it take an array of arguments.
+                    .not used in modern js. better is call method;
+                    .eg( bood.apply(jonas, flightData) ). flightData is an array. jonas is this keyword
+            *bind(): 
+                    .bind method does not immediatly call the function.
+                    .instead it returns a new funtion where the this keyword is whatever the values we pass into the bind.
+                    .eg( const bookEw = book.bind(eurowings)
+                         bookEw(23, 'steven Williams')). 
+                    the bind method returned a funtion,
+                    and it is stored in bookEw variable . 
+                    where the bookEw has the eurowings bound as the this keyword.
 
 
-SECTION 15: MAPTY APP:OOP, GEOLOCATION,EXTERNAL LIBRARIES, AND MORE 
+. In closure a function has access to the variable enviornment of the execution context in which the functiion was created,
+        even after that execution context is finished executing.
+    .A closure is the closed over variable enviornment of the execution context in  which a funcion was created, 
+        even after that execution context is gone.
+    .A closure give a function access to all the variable of its parent function , even after that parent function has returned.
+        the function keeps reference to its outer scope, which preserves the scope chain throughout time.
 
-. use the LeafLet library to implement a map in the website.
 
-. The setView method is a leaflet method is a core funcion of a map object, that allows you to define the center point and zoom level of the map's display.
-     .syntax(
-        map.setView([latitude, longitude], zoomLevel, options)
-     ) 
-     .eg(
-        map.setView([51.505, -0.09], 13, {
-          animate: true,
-          pan: {
-            duration: 1
-          }
-        })
+
+
+* The javascript engine is the heart of the runtime.
+        . The javascript engine conains a heap and a call stack.
+        . The heap is where the object are stored in memory.
+        . The call Stack is where the code is really executed.
+        . javascript can do only one thing at a time. it has single thread execution.
+
+* The web API's are the API's provided to the engine which are not part of the javascript.
+        .eg( DOM, Timers, Fetch API, Geolocation etc....)
+
+* The callBack queue is basically an ordered list of all the callback functions that are in line to be executed
+
+* The callBack queue holds all the ready to be executed callBack funcions (coming from events).
+        .whenever the call stack is empty the event loop takes call backs from the callBack queue and put them in the call stack so that they can be executed.
+
+
+SECTION 11: WORKING WITH ARRAYS 
+
+. The slice method returns a copy of an array into a new array.
+        The original array will not be modified.
+     . eg( const animals = ['ant', 'bison', 'camel', 'duck', 'elephant']
+            console.log(animals.slice(2, 5)) // ['camel', 'duck']
+            console.log(animals) // ['ant', 'bison', 'camel', 'duck', 'elephant']
+        )
+
+. The splice method is used to change the contents of an array by removing or replacing existing elements .
+        it directly modifies the original array and returns an array conaining the deleted elements.
+     . splice(1, 2) in this 1 is the starting index and 2 is how many elements should be removed from the starting index.
+     . eg( let fruits = ['apple', 'banana', 'cherry', 'date']
+           let removed = fruits.splice(1, 2) //Fruits is now ['apple', 'date']
+           // removedFruits is ['banana', 'cherry']
      )
 
-. The Localstorage is an api that the browser provides to us.
-     *. To save data we use the setItem method of the Localstorage.
-        eg( LocalStorage.setItem('key', 'value'))
-     . when we save the data through the setItem the value must be a string or must be converted to a string using the JSON.stringify method.
-     . eg(
-        localStorage.setItem('workouts', JSON.stringify(value)); // saves the date with key workout and value as value that we given
-     )  
+. insertAdjacentHTML method is used to add html elemets via javascript.
+        It is similar to innerHTML.
+        insertAdjacentHTML takes two parameters.
+            *first parameter is where to add there are four types(afterbegin,beforebegin, beforeend, afterend).
+            *second parameter is what html we need to insert into the element.
+        eg( body.insertAdjacentHTML('afterbegin', html) ), 
+            where afterbegin is where to add the element and the html is the html code we want to insert into to body element.
 
-     *. To get the data we saved the getItem method is used
-      . syntax ( localStorage.getItem('key')) 
-      . eg(
-        localStorage.getItem('workouts'); // gets the value with the key workouts
+. find method is an array method used to loop through the array and returns the first value that satisfies a specific condition.
+         if no elements matches the condition it returns undefined.
+       .eg ( arra.find((element) => {
+            return element.name === 'Messi';
+        }));
+         returns the first element that has the name property equal to Messi.
+
+. findIndex method in an array is used to loop through an array and returns the index of the first element that satisfies a specific condition.
+        if no element mathches the condition it returns undefined.
+     . eg( arr.findIndex((element) => {
+        return element.name === 'Messi';
+     }));
+        returns the first element that has  the name property equal to Messi.
+
+. The object.groupby method in js loops throug an iterable like an array and turns it into an object according to the string values returned from a callback function.
+     .  eg( let variable = Object.groupBy(array, (a) => {
+            return a > 0 ? 'first' : 'second'
+       }) )
+       This retuns an Object with two keys named first and second.The first and second will be an array. the first array will have the positive values and the other will have the negative values. 
+     . eg( const groupedAccount = Object.groupBy(array, (arr) => acc.type) )
+         this will make a new object and group it int arrays based on the type of the objects.
+
+. The toReversed method is used to reverse an array without mutating the original array.
+        unlike reverse method toReversed method does not change the original array.
+     . eg( arr.toReversed() )
+        this will take a copy of the arr array and reverse the array.
+     . SIMILAR( ( toReversed(), reverse() ), (toSorted(), sort() ), ( toSpliced(), splice() ))
+        these are the other method similar to the toReversed method.
+
+. Which array method to use.
+            * To Mutate the original array.
+                    .push(), pop(), shift(), unshift(), splice(), reverse(), sort(), fill();
+            * Non destructive versions of reverse(), sort(), splice().
+                    .toReversed(), .toSorted(), .toSpliced()
+            * To make a new array based on the original.
+                    .map(), filter(), slice(), with(), flat(), flatMap(), concat().
+            * To get an index.
+                    .indexOf(), findIndex(), findLastIndex().
+            * To get an array element.
+                    .find(), findLast();
+            * Know if array includes.
+                    .includes(), some(), every();
+            * transform array to a new string.
+                    .join()
+            * To transform an array to a single value.
+                     .reduce()
+            * To loop through an array.
+                    .forEach()
+
+
+
+SECTION 12: NUMBERS, DATES, INTI, TIMERS 
+
+. Type conversion and Coercion Refer to the process of changing a value from one data type to another.
+        *Type conversion
+                .Type conversion is when the developer manually convert a value from one type to another using built in function or constructors.
+                .The developer is manually instructing the javascript to perform the conversion.
+                .eg( 
+                    let strNum = '123';
+                    let num = Number(strNum); //num is now 123 (number)   ;
+
+                    let myNum = 42;
+                    let str = String(myNum); //str is now "42" (string);  
+                )
+        *Type Coercion
+                .Type Coercion happens automatically by the javascript engine.
+                .this happens when an operation involves values of different data types.
+                .JS implicitly convert one or more values to a compatible type to perform the operation.
+                .eg( 
+                     let result1 = "5" - 2; // "5" is coerced to 5, result1 is 3 (number)
+                     let result2 = "Hello " + 10; // 10 is coerced to "10", result2 is "Hello 10" (string)
+                     if("abc"){
+                        // "abc" is coerced to true (boolean)
+                        console.log("This will execute. ");
+                     }
+                     let isEqual = 5 == "5" // "5" is coerced to 5, isEqual is true (boolean)
+
+                )
+
+. Intl.DateTimeFormat constructor in javascript is an API used to create objects that enable language-sensitive date and time formatting.
+        this allow us to display dates and times in a way that is appropriate for a specific locale,
+     . syntax ( new Intl.DateTimeFormat(locales, options).formate(<what to formate(date)>)).
+     . to get locale from the user 
+          const locale = navigator.language // give the users locale.
+     . eg ( 
+        const now  = new Date();
+        const options = {
+                hour: 'numeric',
+                minute: 'numeric',
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+                weekday: 'long'
+        }
+
+        new Intl.DateTimeFormat('en-US').format(now) // give the current time and date based on english in United states.
+        new Intl.DateTimeFormat('ar-SY').format(now) // give the current time as date based on arabic in Syria.
+
+        new Intl.DateTimeFormat('en-US', options).format(now) // gives the current time and date based on the locale and options we passed to Inl Api
+        new Intl.DateTimeFormat('ar-SY', options).format(now) // gives the current time and date based on the locale and options we passed to Inl Api
+       )
+
+. Intl.NumberFormat constructor in js is an API used to create language-sensitive number formating.
+        similat to Intl.DateTimeFormat it accepts an locale and options.
+     . syntax ( new Intl.NumberFormat(locale, options).format(<what to format>))
+     . eg(
+        const num = 3884764.23;
+        const options = {
+                style: "currency",
+                currency: 'INR',
+                ....,
+                ....,
+                ....
+        }
+        new Intl.NumberFormat('en-IN', options).format(num) // formats the number based on the locale and options provided into the Intl.NumberFormat.
+        // output: ₹38,84,764.23
+     )   
+     .more options are available.
+
+
+
+SECTION 13: ADVANCED DOM AND EVENTS 
+
+. To implement scrolling on the website use window.scrollTo method.
+        it enable us to scroll to a specific set of coordinates within the browser window.
+     .syntax( 
+        .window.scrollTo(xCoord, yCoord)
+        .window.scrollTo(options)
+           options is an object contains properties to define the scroll behaviour.
+           left, top, behaviour: 'smooth', 'instant', 'auto'
       )
+      .eg(
+        window.scrollTo(0, 200) //scroll the page to a position 200 pixel from the top and 0 pixel from the left
+        window.scrollTo({
+                top: 500,
+                left: 0,
+                behaviour: 'smooth'
+        }) // scroll the page to a poistion 500px from the top, 0 from the left and with a smooth behaviour;
+      )
+
+. scrollIntoView method is another method to implement scrolling.
+     .syntax(
+           element.scrollIntoView(options) //scrolls to the element defined in front of the method.
+      )
+     .eg(
+        element.scrollIntoView({behaviour: 'smooth'}) //scrolls to the element definded in front of the method is a smooth behavior.
+     )
+
+. getBoundingClientRect is a javascript method that returns the size of an element and its position relative to the viewport(the visible area of the browser window) .
+        it tells you where an element is on the screen and how big is it, relative to what the user sees right now.
+     .syntax(
+        element.getBoundingClientRect();
+     )
+     .eg(
+        const rect = element.getBoundingClientRect(); //returns a object containing numberic properties
+        //output {
+                x: 20,
+                y: 100,
+                width: 200,
+                height: 80,
+                top: 100,
+                right: 220,
+                bottom: 180,
+                left: 20
+        }   
+     )
+
+. The pageXOffset and pageYOffset are properties that tell you how far the page has been scrolled.
+        they measure scroll distance relative to the top-left corner of the document.
+        it give how many pixels yoy have scrolled from the top and right.
+      . eg (
+        window.pageXOffset // the output will be 0
+        window.pageYOffset // the outut will be 350
+      )  
+
+. Event propagation in javascript describes how an event travels through the DOM from the moment its triggered until it finishes 
+     . In javascript, when an event occurs(like a click), it does'nt just fire on the element you clicked.
+        it goes throught three phases.
+                1. Caturing phase
+                        Event travels from the window > document > body > parent > elements > target element
+                2. Target phase 
+                        Event reaches the actual element clicked.
+                3. Bubbling Phase(Event Bubble)
+                        Event travels back up from the targer > its parents > up to the document > window         
+
+. The getAttibute() in javascript is a method used to read the value of an attribute from an HTML element.
+          it retreives the string value of an attribute exactly as it appears in the HTML   
+     . syntax(
+        element.getAttibute(attributeName);
+     )  
+     . eg(
+        <div id='box' date-info="hello"></div>
+        const div = document.getElementById("box");
+        console.log(div.getAttibute("id")) // "box"
+        console.log(div.getAttibute("data-info")) // "hello"
+     )   
+
+. DOM traversing in javascript refers to the process of navigating the DOM to access and maniplate the elements within an HTML document.
+        This allow you to move between the nodes, exploring their relationships and finding specific elements
+
+. The closest method in javascript is a way to traverse the DOM tree upwards from a given element.
+        searching for the nearest ancester or the element that matches a specified css selector
+     . eg(
+        element.closest('.header') // returns the closest element from the elements that has a class named header.
+     )   
+
+. The Intersection Observer API provides a way to observe changes in the intersection target elements with an root element or with the document's viewport.
+         .target element is the DOM element to observe for intersection changes.
+         .root is the element that the target is intersecting.
+             we can set it to an element. setting it into null will enable the intersecting to the viewport. that is the viewport will be the root element.
+         .threshold is the percentage of intersection at which the callback funcion will be called. (it is basically when how much percentage of the element displayed in the screen and then call the callback function.)
+         .rootMargin is will the the value given to the outside of the targer element(eg '90px' , 90px to the outside of the target element)
+     . The callback funcion will  get called each time the target element is intersecting the root element at the threshold that we defined
+     .the callback function will get passed a entries and observer 
+        the entries passed to the callback contains     
+                        .entry.targer
+                        .entry.isIntersecting
+                        .entry.intersectionRation
+                        .entry.getBoundingClientRect
+                        .entry.intersectionRect
+                        .entry.rootBounds
+     . syntax(
+        new intersectionObserver(<callBack funcion>, <options>)
+        options can contain, root, threshold.
+        eg(
+                const options = {
+                        root: null, 
+                        threshold: 0.1,
+                        rootMargin: '90px'
+                }
+
+                funcion callback(entries, observer) {
+                        console.log(entries)
+                }
+
+        )
+     )   
+     .eg(
+        const obsCallback = function (entries, observer) {
+
+        entries.forEach(entry => {
+                console.log(entry);
+        })
+        };
+
+        const observerOptions = {
+                root: null,
+                threshold: 0.1,
+        };
+
+        const observer = new IntersectionObserver(obsCallback, observerOptions);
+        observer.observe(<element>);
+
+     )
+
+
+
 
 SECTION 14: OBJECT ORIENTED PROGRAMMING(OOP) 
 
@@ -355,364 +603,140 @@ SECTION 14: OBJECT ORIENTED PROGRAMMING(OOP)
                 .static fields and static methods are not accessible on the instances.
                 .they are only accessible on the class itself
                 .just use the static keyword in front of the fields and methods.
-. 
+.
 
-SECTION 13: ADVANCED DOM AND EVENTS 
 
-. To implement scrolling on the website use window.scrollTo method.
-        it enable us to scroll to a specific set of coordinates within the browser window.
-     .syntax( 
-        .window.scrollTo(xCoord, yCoord)
-        .window.scrollTo(options)
-           options is an object contains properties to define the scroll behaviour.
-           left, top, behaviour: 'smooth', 'instant', 'auto'
-      )
-      .eg(
-        window.scrollTo(0, 200) //scroll the page to a position 200 pixel from the top and 0 pixel from the left
-        window.scrollTo({
-                top: 500,
-                left: 0,
-                behaviour: 'smooth'
-        }) // scroll the page to a poistion 500px from the top, 0 from the left and with a smooth behaviour;
-      )
 
-. scrollIntoView method is another method to implement scrolling.
+SECTION 15: MAPTY APP:OOP, GEOLOCATION,EXTERNAL LIBRARIES, AND MORE 
+
+. use the LeafLet library to implement a map in the website.
+
+. The setView method is a leaflet method is a core funcion of a map object, that allows you to define the center point and zoom level of the map's display.
      .syntax(
-           element.scrollIntoView(options) //scrolls to the element defined in front of the method.
-      )
+        map.setView([latitude, longitude], zoomLevel, options)
+     ) 
      .eg(
-        element.scrollIntoView({behaviour: 'smooth'}) //scrolls to the element definded in front of the method is a smooth behavior.
-     )
-
-. getBoundingClientRect is a javascript method that returns the size of an element and its position relative to the viewport(the visible area of the browser window) .
-        it tells you where an element is on the screen and how big is it, relative to what the user sees right now.
-     .syntax(
-        element.getBoundingClientRect();
-     )
-     .eg(
-        const rect = element.getBoundingClientRect(); //returns a object containing numberic properties
-        //output {
-                x: 20,
-                y: 100,
-                width: 200,
-                height: 80,
-                top: 100,
-                right: 220,
-                bottom: 180,
-                left: 20
-        }   
-     )
-
-. The pageXOffset and pageYOffset are properties that tell you how far the page has been scrolled.
-        they measure scroll distance relative to the top-left corner of the document.
-        it give how many pixels yoy have scrolled from the top and right.
-      . eg (
-        window.pageXOffset // the output will be 0
-        window.pageYOffset // the outut will be 350
-      )  
-
-. Event propagation in javascript describes how an event travels through the DOM from the moment its triggered until it finishes 
-     . In javascript, when an event occurs(like a click), it does'nt just fire on the element you clicked.
-        it goes throught three phases.
-                1. Caturing phase
-                        Event travels from the window > document > body > parent > elements > target element
-                2. Target phase 
-                        Event reaches the actual element clicked.
-                3. Bubbling Phase(Event Bubble)
-                        Event travels back up from the targer > its parents > up to the document > window         
-
-. The getAttibute() in javascript is a method used to read the value of an attribute from an HTML element.
-          it retreives the string value of an attribute exactly as it appears in the HTML   
-     . syntax(
-        element.getAttibute(attributeName);
-     )  
-     . eg(
-        <div id='box' date-info="hello"></div>
-        const div = document.getElementById("box");
-        console.log(div.getAttibute("id")) // "box"
-        console.log(div.getAttibute("data-info")) // "hello"
-     )   
-
-. DOM traversing in javascript refers to the process of navigating the DOM to access and maniplate the elements within an HTML document.
-        This allow you to move between the nodes, exploring their relationships and finding specific elements
-
-. The closest method in javascript is a way to traverse the DOM tree upwards from a given element.
-        searching for the nearest ancester or the element that matches a specified css selector
-     . eg(
-        element.closest('.header') // returns the closest element from the elements that has a class named header.
-     )   
-
-. The Intersection Observer API provides a way to observe changes in the intersection target elements with an root element or with the document's viewport.
-         .target element is the DOM element to observe for intersection changes.
-         .root is the element that the target is intersecting.
-             we can set it to an element. setting it into null will enable the intersecting to the viewport. that is the viewport will be the root element.
-         .threshold is the percentage of intersection at which the callback funcion will be called. (it is basically when how much percentage of the element displayed in the screen and then call the callback function.)
-         .rootMargin is will the the value given to the outside of the targer element(eg '90px' , 90px to the outside of the target element)
-     . The callback funcion will  get called each time the target element is intersecting the root element at the threshold that we defined
-     .the callback function will get passed a entries and observer 
-        the entries passed to the callback contains     
-                        .entry.targer
-                        .entry.isIntersecting
-                        .entry.intersectionRation
-                        .entry.getBoundingClientRect
-                        .entry.intersectionRect
-                        .entry.rootBounds
-     . syntax(
-        new intersectionObserver(<callBack funcion>, <options>)
-        options can contain, root, threshold.
-        eg(
-                const options = {
-                        root: null, 
-                        threshold: 0.1,
-                        rootMargin: '90px'
-                }
-
-                funcion callback(entries, observer) {
-                        console.log(entries)
-                }
-
-        )
-     )   
-     .eg(
-        const obsCallback = function (entries, observer) {
-
-        entries.forEach(entry => {
-                console.log(entry);
+        map.setView([51.505, -0.09], 13, {
+          animate: true,
+          pan: {
+            duration: 1
+          }
         })
-        };
-
-        const observerOptions = {
-                root: null,
-                threshold: 0.1,
-        };
-
-        const observer = new IntersectionObserver(obsCallback, observerOptions);
-        observer.observe(<element>);
-
      )
 
-
-SECTION 12: NUMBERS, DATES, INTI, TIMERS 
-
-. Type conversion and Coercion Refer to the process of changing a value from one data type to another.
-        *Type conversion
-                .Type conversion is when the developer manually convert a value from one type to another using built in function or constructors.
-                .The developer is manually instructing the javascript to perform the conversion.
-                .eg( 
-                    let strNum = '123';
-                    let num = Number(strNum); //num is now 123 (number)   ;
-
-                    let myNum = 42;
-                    let str = String(myNum); //str is now "42" (string);  
-                )
-        *Type Coercion
-                .Type Coercion happens automatically by the javascript engine.
-                .this happens when an operation involves values of different data types.
-                .JS implicitly convert one or more values to a compatible type to perform the operation.
-                .eg( 
-                     let result1 = "5" - 2; // "5" is coerced to 5, result1 is 3 (number)
-                     let result2 = "Hello " + 10; // 10 is coerced to "10", result2 is "Hello 10" (string)
-                     if("abc"){
-                        // "abc" is coerced to true (boolean)
-                        console.log("This will execute. ");
-                     }
-                     let isEqual = 5 == "5" // "5" is coerced to 5, isEqual is true (boolean)
-
-                )
-
-. Intl.DateTimeFormat constructor in javascript is an API used to create objects that enable language-sensitive date and time formatting.
-        this allow us to display dates and times in a way that is appropriate for a specific locale,
-     . syntax ( new Intl.DateTimeFormat(locales, options).formate(<what to formate(date)>)).
-     . to get locale from the user 
-          const locale = navigator.language // give the users locale.
-     . eg ( 
-        const now  = new Date();
-        const options = {
-                hour: 'numeric',
-                minute: 'numeric',
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric',
-                weekday: 'long'
-        }
-
-        new Intl.DateTimeFormat('en-US').format(now) // give the current time and date based on english in United states.
-        new Intl.DateTimeFormat('ar-SY').format(now) // give the current time as date based on arabic in Syria.
-
-        new Intl.DateTimeFormat('en-US', options).format(now) // gives the current time and date based on the locale and options we passed to Inl Api
-        new Intl.DateTimeFormat('ar-SY', options).format(now) // gives the current time and date based on the locale and options we passed to Inl Api
-       )
-
-. Intl.NumberFormat constructor in js is an API used to create language-sensitive number formating.
-        similat to Intl.DateTimeFormat it accepts an locale and options.
-     . syntax ( new Intl.NumberFormat(locale, options).format(<what to format>))
+. The Localstorage is an api that the browser provides to us.
+     *. To save data we use the setItem method of the Localstorage.
+        eg( LocalStorage.setItem('key', 'value'))
+     . when we save the data through the setItem the value must be a string or must be converted to a string using the JSON.stringify method.
      . eg(
-        const num = 3884764.23;
-        const options = {
-                style: "currency",
-                currency: 'INR',
-                ....,
-                ....,
-                ....
-        }
-        new Intl.NumberFormat('en-IN', options).format(num) // formats the number based on the locale and options provided into the Intl.NumberFormat.
-        // output: ₹38,84,764.23
-     )   
-     .more options are available.
+        localStorage.setItem('workouts', JSON.stringify(value)); // saves the date with key workout and value as value that we given
+     )  
 
-
-SECTION 11: WORKING WITH ARRAYS 
-
-. The slice method returns a copy of an array into a new array.
-        The original array will not be modified.
-     . eg( const animals = ['ant', 'bison', 'camel', 'duck', 'elephant']
-            console.log(animals.slice(2, 5)) // ['camel', 'duck']
-            console.log(animals) // ['ant', 'bison', 'camel', 'duck', 'elephant']
-        )
-
-. The splice method is used to change the contents of an array by removing or replacing existing elements .
-        it directly modifies the original array and returns an array conaining the deleted elements.
-     . splice(1, 2) in this 1 is the starting index and 2 is how many elements should be removed from the starting index.
-     . eg( let fruits = ['apple', 'banana', 'cherry', 'date']
-           let removed = fruits.splice(1, 2) //Fruits is now ['apple', 'date']
-           // removedFruits is ['banana', 'cherry']
-     )
-
-. insertAdjacentHTML method is used to add html elemets via javascript.
-        It is similar to innerHTML.
-        insertAdjacentHTML takes two parameters.
-            *first parameter is where to add there are four types(afterbegin,beforebegin, beforeend, afterend).
-            *second parameter is what html we need to insert into the element.
-        eg( body.insertAdjacentHTML('afterbegin', html) ), 
-            where afterbegin is where to add the element and the html is the html code we want to insert into to body element.
-
-. find method is an array method used to loop through the array and returns the first value that satisfies a specific condition.
-         if no elements matches the condition it returns undefined.
-       .eg ( arra.find((element) => {
-            return element.name === 'Messi';
-        }));
-         returns the first element that has the name property equal to Messi.
-
-. findIndex method in an array is used to loop through an array and returns the index of the first element that satisfies a specific condition.
-        if no element mathches the condition it returns undefined.
-     . eg( arr.findIndex((element) => {
-        return element.name === 'Messi';
-     }));
-        returns the first element that has  the name property equal to Messi.
-
-. The object.groupby method in js loops throug an iterable like an array and turns it into an object according to the string values returned from a callback function.
-     .  eg( let variable = Object.groupBy(array, (a) => {
-            return a > 0 ? 'first' : 'second'
-       }) )
-       This retuns an Object with two keys named first and second.The first and second will be an array. the first array will have the positive values and the other will have the negative values. 
-     . eg( const groupedAccount = Object.groupBy(array, (arr) => acc.type) )
-         this will make a new object and group it int arrays based on the type of the objects.
-
-. The toReversed method is used to reverse an array without mutating the original array.
-        unlike reverse method toReversed method does not change the original array.
-     . eg( arr.toReversed() )
-        this will take a copy of the arr array and reverse the array.
-     . SIMILAR( ( toReversed(), reverse() ), (toSorted(), sort() ), ( toSpliced(), splice() ))
-        these are the other method similar to the toReversed method.
-
-. Which array method to use.
-            * To Mutate the original array.
-                    .push(), pop(), shift(), unshift(), splice(), reverse(), sort(), fill();
-            * Non destructive versions of reverse(), sort(), splice().
-                    .toReversed(), .toSorted(), .toSpliced()
-            * To make a new array based on the original.
-                    .map(), filter(), slice(), with(), flat(), flatMap(), concat().
-            * To get an index.
-                    .indexOf(), findIndex(), findLastIndex().
-            * To get an array element.
-                    .find(), findLast();
-            * Know if array includes.
-                    .includes(), some(), every();
-            * transform array to a new string.
-                    .join()
-            * To transform an array to a single value.
-                     .reduce()
-            * To loop through an array.
-                    .forEach()
-
-SECTION 10: FUNCTIONS 
-
- .Js Does not have passing by reference. 
-    The reference that we pass pass is a value.
-    It is a value that contains a memmory address. 
-    Basically we pass a referece to the funcion but we do not pass by a referece.
-
-
-. Js has first class funcion it enable us to write Higher order functions.
-
-    *first class functions
-        .Treats functions as first class citizens
-        .This means that function are simply treated as values
-        .Function are just another type of object in js.
-        .functions are values too
-        .can pass functions as arguments to other functions.
-        .eg (bind())
-    
-    *Higher order functions
-        .A function that receives another function as an argument, that returns a new function, or both
-        .this is only possible because of first class function.
-        .eg (addEventListener())
-
-. Advantages of callBack function
-
-        .allow us to split up to code to reusable codes.
-        .(imp) callBack functions allow us to create abstraction.
-    
-
-. The this keyword depends on how the function is called.
-        .if the function is called by the object (eg jonas.book()),
-            the this keyword points to the jonas object.
-        .if the function is called not by the object (eg: the book method is stored outside in a varible),
-            then the this keyword points to undefined.
-
-        *How to tell js what the this keyword should look like. using 
-            *call():
-                    .call(<this keyword>, <rest of the parameters>)
-                    .we call the call method first and then the call method calls the funcion
-                          with the this keyword set to the first argument we pass in the call method.
-                    .eg( book.call(jonas, 23, 'Jonas Schmedtmann) ). 
-                          jonas is the this keyword and the rest of the arguments is like normal arguments.
-            *apply():
-                    .apply method does not receives arguments after the this keyword like call method
-                    .it take an array of arguments.
-                    .not used in modern js. better is call method;
-                    .eg( bood.apply(jonas, flightData) ). flightData is an array. jonas is this keyword
-            *bind(): 
-                    .bind method does not immediatly call the function.
-                    .instead it returns a new funtion where the this keyword is whatever the values we pass into the bind.
-                    .eg( const bookEw = book.bind(eurowings)
-                         bookEw(23, 'steven Williams')). 
-                    the bind method returned a funtion,
-                    and it is stored in bookEw variable . 
-                    where the bookEw has the eurowings bound as the this keyword.
-
-
-. In closure a function has access to the variable enviornment of the execution context in which the functiion was created,
-        even after that execution context is finished executing.
-    .A closure is the closed over variable enviornment of the execution context in  which a funcion was created, 
-        even after that execution context is gone.
-    .A closure give a function access to all the variable of its parent function , even after that parent function has returned.
-        the function keeps reference to its outer scope, which preserves the scope chain throughout time.
+     *. To get the data we saved the getItem method is used
+      . syntax ( localStorage.getItem('key')) 
+      . eg(
+        localStorage.getItem('workouts'); // gets the value with the key workouts
+      )
 
 
 
 
-* The javascript engine is the heart of the runtime.
-        . The javascript engine conains a heap and a call stack.
-        . The heap is where the object are stored in memory.
-        . The call Stack is where the code is really executed.
-        . javascript can do only one thing at a time. it has single thread execution.
+SECTION 16: ASYNCHRONOUS JS: PROMISES, ASYNC/AWAIT AND AJAX. 
 
-* The web API's are the API's provided to the engine which are not part of the javascript.
-        .eg( DOM, Timers, Fetch API, Geolocation etc....)
+. . Asynchronous code is executed after a task runs in the background finishes.
+       . Asynchronous code in non-blocking;
+       . Execution does't wait for any asynchronous task to finish its work;
+       . Callback functions alone do not make code asynchronous!.
+       
+. AJAX(Asynchronous Javascript And XML): Allows us to communicate with remote web servers in an asynchronous way.
+        with AJAX calls, we can request data from web servers dynamically.
+     .    
 
-* The callBack queue is basically an ordered list of all the callback functions that are in line to be executed
+. API(Application Programming Interface): is a Piece of software that can be used by another Piece of software, 
+        in order to allow applications to talk to each other.
+     . There are many types of API,s in web development
+                .DOM API.
+                .Geolocation API.
+                .Own class API.
+                .Online Api:
+                        Application running on a server that receives request for data and sends data back as response.
 
-* The callBack queue holds all the ready to be executed callBack funcions (coming from events).
-        .whenever the call stack is empty the event loop takes call backs from the callBack queue and put them in the call stack so that they can be executed.
+ JSON data format is the most popular API data format.   
+
+. Promise: an object that is used as a placeholder for the future result of an asynchronous operation.
+        .a container for an asynchronous delivered value.
+        .a container for a future value.
+
+. All the Asynchronous tasks like timers, AJAX calls will run on the web API's Enviornment of the browser.
+     . The callBack queue is basically an ordered list of all the callback functions that are in line to be executed.
+        all the callback from an asynchronous tasks are put into the back of the  callback queue after the asynchronous task completed.(after fetching the api the callback function will be put to the callback queue).
+
+. All the callBacks from the DOM events like the click events are also stored in the callback queue.
+
+. The event loop looks at the call stack of it is empty except for the global context.
+        if the call stack is empty (no code in execution) the events loop will take the first callback from the callback queue and put it into the call stack to be executed.
+     . The event loop decides when each callback is executed.
+
+. The callback from a promise is not put into the callback queue.
+     . It is put into a special queue called microtask queue.
+     . the microtask queue have priority over the callBack queue.
+     . if the callstack is empty the event loop will first check if there is any callback in the microtask queue. if there is it will run all of them before it will run any callbacks from the callback queue.
+
+. Promise combinators in javascript are static methods on the promise object that allow for handling multiple concurrently and reacting to their collective or individual settlement states.
+        they are useful for managing complex asynchronous operations involving multiple independent tasks.
+     . Promise combinators are.
+                1.Promise.all(iterable):
+                        . if all promises resolve it returns a single promise that resolves to an array of their results, in the same order as the input iterable.
+                        . if any promise rejects, Promise.all immediatly rejects with the reason of the first rejected promise.
+                        . eg(
+                                const p1 = Promise.resolve(1)
+                                const p2 = Promise.resolve(2)
+                                const p3 = Promise.resolve(3)
+
+                                Promise.all([p1, p2, p3]).then(res => console.log(res)) // Output: [1, 2, 3]
+                        )
+                2.Promise.race(iterable):
+                        . receives an array of promises and return a promise.
+                        . the promise that retuned is settled as soon as one of the input promises settles.
+                        . eg(
+                                const pFast = new Promise(res => setTimout(() => res('fast'), 50))
+                                const pSLow = new Promise(res => setTimout(() => res('slow'), 100))
+
+                                Promise.race([pFast, pSLow]).then(res => console.log(res)) // Output: "fast"
+                        )
+                3.Promise.allSettled(iterable):
+                        . receives an array of promises and return a array of all the settled promises.
+                        . it never short circuits when one of the promise got rejected
+                        . eg(
+                                Promise.allSettled([
+                                        Promise.resolve('success'),
+                                        Promise.reject('error'),
+                                        Promise.resolve('another')
+                                ]).then(res => console.log(res)) // Output: [{...}, {...}, {...}]
+                        )
+                4.Promise.any(iterable):
+                        . receives an array of promises and return a promise that resolves first with the value of the promise that resolves.
+                        . rejected promises are ignored.
+                        . eg(
+                                Promise.any([
+                                        Promise.resolve('success'),
+                                        Promise.reject('error'),
+                                        Promise.resolve('another')
+                                ]).then(res => console.log(res)) // Output: 'Success'
+                        )
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
 
